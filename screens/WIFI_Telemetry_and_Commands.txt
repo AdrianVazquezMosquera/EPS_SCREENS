@@ -1,0 +1,581 @@
+<%= render "_WIFI_Telemetry_and_Commands_header.txt" %>
+SCROLLWINDOW
+	SETTING RAW "min-width: 75em; min-height: 39em; max-width: 75em; max-height: 39em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "STATUS" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 32em; min-height: 10em'
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						LABEL "Connection flag: "
+							SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+						LABEL ""
+						HORIZONTAL 0
+							LABEL ""
+							FORMATVALUE TARGET WIFI_CONNECTION_STATUS_PACKET WIFI_CONNECTION_STATUS %s CONVERTED 38
+								SETTING RAW "min-width: 15.5em; min-height: 1.15em; max-width: 15.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					
+						LABEL "WLAN error flag: "
+							SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+						LABEL ""
+						HORIZONTAL 0
+							LABEL ""
+							FORMATVALUE TARGET WIFI_WLAN_STATUS_PACKET WIFI_WLAN_ERROR %s CONVERTED 38
+								SETTING RAW "min-width: 15.5em; min-height: 1.15em; max-width: 15.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					
+						LABEL "Wireless channel: "
+							SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+						LABEL ""
+						HORIZONTAL 0
+							LABEL ""
+							VALUE TARGET WIFI_WLAN_STATUS_PACKET WIFI_WIRELESS_CHANNEL RAW
+								SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					
+						LABEL "Signal strength: "
+							SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+						LABEL ""
+						HORIZONTAL 0
+							LABEL ""
+							FORMATVALUE TARGET WIFI_WLAN_STATUS_PACKET WIFI_RSSI %5.1f
+								SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
+							LABEL " dBm"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					END
+					<%= render "_Separator_height.txt" %>
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Connect: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_CONNECT")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Disconnect: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_DISCONNECT")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Load settings: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_READ_CONFIGURATION")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Save settings: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_WRITE_CONFIGURATION")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					END
+				END
+			
+				<%= render "_Separator_height.txt" %>
+			
+				VERTICALBOX "WLAN CONFIGURATION" 0
+					SETTING BORDERCOLOR 'DarkSlateBlue; border-width: 0.3em; font-weight: bold; min-width: 32em; min-height: 10em'
+					<%= render "_Separator_height.txt" %>
+					HORIZONTAL 0
+						LABEL "Get packet: "
+							SETTING RAW "min-width: 6em; min-height: 1.5em; max-width: 6em; max-height: 1.5em"
+						LABEL ""
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						BUTTON "GET" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_CONFIGURE_WLAN_TM_PACKET_DELIVERY with PARAMETER_WIFI_CONFIGURE_WLAN_TM_PACKET_DELIVERY_ENABLE_PERMANENT_DELIVERY NO, PARAMETER_WIFI_CONFIGURE_WLAN_TM_PACKET_DELIVERY_TIMES_TO_BE_DELIVERED 1")'
+							SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						LABEL ""
+					END
+					<%= render "_Separator_height.txt" %>
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 2
+						LABEL "SSID: "
+							SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+						HORIZONTAL 0
+							LABEL ""
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_SSID %s CONVERTED 38
+								SETTING RAW "min-width: 15.5em; min-height: 1.15em; max-width: 15.5em; max-height: 1.15em"
+						END
+					
+						LABEL "MAC address: "
+							SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+						HORIZONTAL 0
+							LABEL ""
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_1 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_2 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_3 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_4 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_5 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							FORMATVALUE TARGET WIFI_WLAN_CONFIGURATION_PACKET WIFI_MAC_6 %02X
+								SETTING RAW "min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+						END
+					END
+					<%= render "_Separator_height.txt" %>
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						LABEL "Set network SSID: "
+							SETTING RAW "min-width: 12em; min-height: 1.5em; max-width: 12em; max-height: 1.5em"
+						HORIZONTAL 0
+							NAMED_WIDGET SSID_Input TEXTFIELD 32 "network SSID value"
+								SETTING RAW "font-weight: bold; min-width: 15em; min-height: 1.15em; max-width: 15em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+						END
+						HORIZONTAL 0
+							LABEL ""
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name}","WIFI_SET_NETWORK_SSID","PARAMETER_WIFI_SET_NETWORK_SSID" => get_named_widget("SSID_Input").text)'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						LABEL "Set network passphrase: "
+							SETTING RAW "min-width: 12em; min-height: 1.5em; max-width: 12em; max-height: 1.5em"
+						HORIZONTAL 0
+							NAMED_WIDGET Passphrase_Input TEXTFIELD 32 "network passphrase value"
+								SETTING RAW "font-weight: bold; min-width: 15em; min-height: 1.15em; max-width: 15em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+						END
+						HORIZONTAL 0
+							LABEL ""
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name}","WIFI_SET_NETWORK_PASSPHRASE","PARAMETER_WIFI_SET_NETWORK_PASSPHRASE" => get_named_widget("Passphrase_Input").text)'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					END
+				END
+			END
+		
+			<%= render "_Separator_width.txt" %>
+		
+			VERTICAL 0
+				VERTICALBOX "NETWORK AND TRANSPORT CONFIGURATION" 0
+					SETTING BORDERCOLOR 'DarkSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 40em; min-height: 17em'
+					<%= render "_Separator_height.txt" %>
+					HORIZONTAL 0
+						LABEL "Get packet: "
+							SETTING RAW "min-width: 6em; min-height: 1.5em; max-width: 6em; max-height: 1.5em"
+						LABEL ""
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						BUTTON "GET" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_CONFIGURE_NETWORK_TM_PACKET_DELIVERY with PARAMETER_WIFI_CONFIGURE_NETWORK_TM_PACKET_DELIVERY_ENABLE_PERMANENT_DELIVERY NO, PARAMETER_WIFI_CONFIGURE_NETWORK_TM_PACKET_DELIVERY_TIMES_TO_BE_DELIVERED 1")'
+							SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						LABEL ""
+					END
+					<%= render "_Separator_height.txt" %>
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Host address: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_HOSTADDRESS_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_HOSTADDRESS_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_HOSTADDRESS_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_HOSTADDRESS_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Host_Address_1 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Host_Address_2 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Host_Address_3 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Host_Address_4 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_HOST_ADDRESS with PARAMETER_WIFI_SET_HOST_ADDRESS_1 #{get_named_widget("Host_Address_1").text.to_i}, PARAMETER_WIFI_SET_HOST_ADDRESS_2 #{get_named_widget("Host_Address_2").text.to_i}, PARAMETER_WIFI_SET_HOST_ADDRESS_3 #{get_named_widget("Host_Address_3").text.to_i}, PARAMETER_WIFI_SET_HOST_ADDRESS_4 #{get_named_widget("Host_Address_4").text.to_i}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Subnet mask: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SUBNET_MASK_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SUBNET_MASK_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SUBNET_MASK_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SUBNET_MASK_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Mask_1 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Mask_2 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Mask_3 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Mask_4 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_SUBNET_MASK with PARAMETER_WIFI_SET_SUBNET_MASK_1 #{get_named_widget("Mask_1").text.to_i}, PARAMETER_WIFI_SET_SUBNET_MASK_2 #{get_named_widget("Mask_2").text.to_i}, PARAMETER_WIFI_SET_SUBNET_MASK_3 #{get_named_widget("Mask_3").text.to_i}, PARAMETER_WIFI_SET_SUBNET_MASK_4 #{get_named_widget("Mask_4").text.to_i}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Def. gateway: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_DEFAULT_GATEWAY_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_DEFAULT_GATEWAY_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_DEFAULT_GATEWAY_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_DEFAULT_GATEWAY_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Gate_1 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Gate_2 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Gate_3 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Gate_4 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_GATEWAY_ADDRESS with PARAMETER_WIFI_SET_GATEWAY_ADDRESS_1 #{get_named_widget("Gate_1").text.to_i}, PARAMETER_WIFI_SET_GATEWAY_ADDRESS_2 #{get_named_widget("Gate_2").text.to_i}, PARAMETER_WIFI_SET_GATEWAY_ADDRESS_3 #{get_named_widget("Gate_3").text.to_i}, PARAMETER_WIFI_SET_GATEWAY_ADDRESS_4 #{get_named_widget("Gate_4").text.to_i}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Primary DNS server: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_PRIMARY_DNS_SERVER_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_PRIMARY_DNS_SERVER_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_PRIMARY_DNS_SERVER_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_PRIMARY_DNS_SERVER_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Primary_DNS_1 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Primary_DNS_2 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Primary_DNS_3 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Primary_DNS_4 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_DNS_SERVER_PRIMARY with PARAMETER_WIFI_SET_DNS_SERVER_PRIMARY_1 #{get_named_widget("Primary_DNS_1").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_PRIMARY_2 #{get_named_widget("Primary_DNS_2").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_PRIMARY_3 #{get_named_widget("Primary_DNS_3").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_PRIMARY_4 #{get_named_widget("Primary_DNS_4").text.to_i}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Secondary DNS server: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SECONDARY_DNS_SERVER_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SECONDARY_DNS_SERVER_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SECONDARY_DNS_SERVER_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SECONDARY_DNS_SERVER_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Secondary_DNS_1 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Secondary_DNS_2 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Secondary_DNS_3 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Secondary_DNS_4 TEXTFIELD 3 "255"
+								SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_DNS_SERVER_SECONDARY with PARAMETER_WIFI_SET_DNS_SERVER_SECONDARY_1 #{get_named_widget("Secondary_DNS_1").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_SECONDARY_2 #{get_named_widget("Secondary_DNS_2").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_SECONDARY_3 #{get_named_widget("Secondary_DNS_3").text.to_i}, PARAMETER_WIFI_SET_DNS_SERVER_SECONDARY_4 #{get_named_widget("Secondary_DNS_4").text.to_i}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "DHCP mode: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_DHCP_STATUS
+								SETTING RAW "min-width: 6em; min-height: 1.15em; max-width: 6em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							LABEL ""
+								SETTING RAW "min-width: 0.125em; max-width: 0.125em"
+							BUTTON "DHCP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_DHCP_MODE")'
+								SETTING RAW "min-width: 5em; min-height: 1.15em; max-width: 5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							LABEL ""
+								SETTING RAW "min-width: 0.125em; max-width: 0.125em"
+							BUTTON "Static IP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_STATIC_IP_MODE")'
+								SETTING RAW "min-width: 5em; min-height: 1.15em; max-width: 5em; max-height: 1.15em"
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL "Server address: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SERVER_ADDRESS_1 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SERVER_ADDRESS_2 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SERVER_ADDRESS_3 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL "."
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SERVER_ADDRESS_4 RAW
+								SETTING RAW "min-width: 2em; min-height: 1.15em; max-width: 2em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Server_Address TEXTFIELD 64 "255.255.255.255"
+								SETTING RAW "font-weight: bold; min-width: 10em; min-height: 1.15em; max-width: 10em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_SERVER_ADDRESS with PARAMETER_WIFI_SET_SERVER_ADDRESS #{get_named_widget("Server_Address").text}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Server port: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_NETWORK_AND_TRANSPORT_CONFIGURATION_PACKET WIFI_SERVER_PORT RAW
+								SETTING RAW "min-width: 6em; min-height: 1.15em; max-width: 6em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Server_port TEXTFIELD 5 "65535"
+								SETTING RAW "font-weight: bold; min-width: 10em; min-height: 1.15em; max-width: 10em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_SERVER_PORT with PARAMETER_WIFI_SET_SERVER_PORT #{get_named_widget("Server_port").text}")'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					END
+				END
+			
+				<%= render "_Separator_height.txt" %>
+			
+				VERTICALBOX "HOSTNAME" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-width: 40em; min-height: 3.5em'
+					<%= render "_Separator_height.txt" %>
+					HORIZONTAL 0
+						LABEL "Get packet: "
+							SETTING RAW "min-width: 6em; min-height: 1.5em; max-width: 6em; max-height: 1.5em"
+						LABEL ""
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						BUTTON "GET" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_CONFIGURE_HOSTNAME_TM_DELIVERY with PARAMETER_WIFI_CONFIGURE_HOSTNAME_TM_DELIVERY_ENABLE_PERMANENT_DELIVERY NO, PARAMETER_WIFI_CONFIGURE_HOSTNAME_TM_DELIVERY_TIMES_TO_BE_DELIVERED 1")'
+							SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						LABEL ""
+					END
+					<%= render "_Separator_height.txt" %>
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Value: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET WIFI_HOSTNAME_PACKET WIFI_HOSTNAME RAW
+								SETTING RAW "min-width: 11em; min-height: 1.15em; max-width: 11em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Set: "
+								SETTING RAW "min-width: 2.5em; min-height: 1.5em; max-width: 2.5em; max-height: 1.5em"
+							NAMED_WIDGET Hostname_Value TEXTFIELD 32 "hostname value"
+								SETTING RAW "font-weight: bold; min-width: 10em; min-height: 1.15em; max-width: 10em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name}","WIFI_SET_HOSTNAME","PARAMETER_WIFI_SET_HOSTNAME" => get_named_widget("Hostname_Value").text)'
+								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+						END
+					END
+				END
+			END
+		END
+	
+		<%= render "_Separator_height.txt" %>
+	
+		<%= render "_Telemetry_footer.txt" %>
+	
+	END
+	
+END

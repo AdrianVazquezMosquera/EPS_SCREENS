@@ -1,0 +1,412 @@
+<%= render "_ADCS_Telemetry_header.txt" %>
+SCROLLWINDOW
+	SETTING RAW "min-width: 77em; max-width: 77em; min-height: 41em; max-height: 41em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "SUBSYSTEM" 0
+					SETTING BORDERCOLOR 'DodgerBlue; border-width: 0.3em; font-weight: bold; min-width: 30.5em; min-height: 18em'
+					<%= render "_Separator_height.txt" %>
+					LABEL "State"
+						SETTING RAW "font-weight: bold"
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 2
+						LABEL "ADCS run mode: "
+							SETTING RAW "min-width: 7.5em; min-height: 1.5em; max-width: 7.5em; min-height: 1.5em"
+						HORIZONTAL 0
+							LABEL ""
+							VALUE TARGET ADCS_PACKET ADCS_RUN_MODE
+								SETTING RAW "min-width: 20em; min-height: 1.15em; max-width: 20em; max-height: 1.15em"
+							LABEL ""
+						END
+					END
+					<%= render "_Separator_height.txt" %>
+					LABEL "Sensors"
+						SETTING RAW "font-weight: bold"
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Attitude: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; min-height: 1.5em"
+							LABEL ""
+						END
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTAL 0
+							LABEL "  Magnetic: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_MAGNETIC_ANGLE %3.0f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg"
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "  Sun: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_SOLAR_ANGLE %3.0f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL "Sun sensors: "
+								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; min-height: 1.5em"
+							LABEL ""
+						END
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTAL 0
+							LABEL "  +X: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_SOLAR_SENSOR_X_PLUS %4.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "  -X: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_SOLAR_SENSOR_X_MINUS %4.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL "  +Y: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_SOLAR_SENSOR_Y_PLUS %4.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "  -Y: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_SOLAR_SENSOR_Y_MINUS %4.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL "Rotational speed: "
+								SETTING RAW "min-width: 9em; min-height: 1.5em; max-width: 9em; min-height: 1.5em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL ""
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_ROTATIONAL_SPEED %4.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg/s"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					END
+					<%= render "_Separator_height.txt" %>
+					LABEL "Error Flags"
+						SETTING RAW "font-weight: bold"
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Gyroscope: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_GYROSCOPE_ERROR
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Magnetometer: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_MAGNETOMETER_ERROR
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					END
+				END
+	
+				<%= render "_Separator_height.txt" %>
+	
+				VERTICALBOX "MAGNETORQUERS CONTROLLER" 0
+					SETTING BORDERCOLOR "DarkSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 30.5em; min-height: 6.5em"
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						LABEL "State"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Enable flag: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_MAGNETORQUER_ENABLE_DRIVER
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTAL 0
+							LABEL "Polarity: "
+								SETTING RAW "min-width: 5.75em; min-height: 1.5em; max-width: 5.75em; max-height: 1.5em"
+							LABEL ""
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTAL 0
+							LABEL "  X-MTQ: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_MAGNETORQUER_XPOLARITY
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2em; max-width: 2em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "  Y-MTQ: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_MAGNETORQUER_YPOLARITY
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 3em; max-width: 3em"
+							LABEL ""
+						END
+					END
+				END
+			END
+		
+			<%= render "_Separator_width.txt" %>
+		
+			VERTICAL 0
+				VERTICALBOX "ATTITUDE CONTROLLER" 0
+					SETTING BORDERCOLOR "DarkCyan; border-width: 0.3em; font-weight: bold; min-width: 42em; min-height: 15em"
+					<%= render "_Separator_height.txt" %>
+					HORIZONTAL 0
+						LABEL "Target attitude: "
+							SETTING RAW "min-width: 8.5em; min-height: 1.5em; max-width: 8.5em; max-height: 1.5em"
+						FORMATVALUE TARGET ADCS_PACKET ADCS_TARGET_ATTITUDE %4.1f
+							SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+						LABEL " deg"
+							SETTING RAW "min-width: 5em; max-width: 5em;"
+						LABEL ""
+					END
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						LABEL "PID Gains"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL "PID Intelligent Criteria (Actuation Thresholds)"
+							SETTING RAW "font-weight: bold; min-width: 23.5em; max-width: 23.5em"
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Proportional: "
+									SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_PROPORTIONAL_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " 1/deg"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Min. error [+/-]: "
+									SETTING RAW "min-width: 14.5em; min-height: 1.5em; max-width: 14.5em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_ERROR_DEADBAND
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Integral: "
+									SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_INTEGRAL_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " 1/(deg s)"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Min. error derivative [+/-]: "
+									SETTING RAW "min-width: 14.5em; min-height: 1.5em; max-width: 14.5em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_ERROR_DERIVATIVE_DEADBAND
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg/s"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Derivative: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_DERIVATIVE_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " s/deg"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Max. error derivative [+/-]: "
+								SETTING RAW "min-width: 14.5em; min-height: 1.5em; max-width: 14.5em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_DETUMBLING_THRESHOLD
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " deg/s"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						LABEL "Usage Flags"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Gyroscope: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_ATTITUDE_CONTROLLER_GYROSCOPE_USAGE
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Actuator: "
+								SETTING RAW "min-width: 11em; min-height: 1.5em; max-width: 11em; max-height: 1.5em"
+							VALUE TARGET ADCS_PACKET ADCS_ACTUATOR FORMATTED 14
+								SETTING RAW "min-width: 8em; min-height: 1.15em; max-width: 8em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					END
+				END
+	
+				<%= render "_Separator_height.txt" %>
+	
+				VERTICALBOX "REACTION WHEEL CONTROLLER" 0
+					SETTING BORDERCOLOR "DarkSlateBlue; border-width: 0.3em; font-weight: bold; min-width: 42em; min-height: 9.5em"
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						LABEL "PID Gains"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL "State"
+							SETTING RAW "font-weight: bold; min-width: 23.5em; max-width: 23.5em"
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						LABEL ""
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Proportional: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_WHEEL_CONTROLLER_PROPORTIONAL_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " 1/rpm"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Duty cycle: "
+								SETTING RAW "min-width: 14.5em; min-height: 1.5em; max-width: 14.5em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_WHEEL_DUTY_CYCLE %3d
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Integral: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_WHEEL_CONTROLLER_INTEGRAL_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " 1/(rpm s)"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Wheel speed: "
+								SETTING RAW "min-width: 14.5em; min-height: 1.5em; max-width: 14.5em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_WHEEL_SPEED %4.0f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " rpm"
+								SETTING RAW "min-width: 3em; max-width: 3em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Derivative: "
+								SETTING RAW "min-width: 7em; min-height: 1.5em; max-width: 7em; max-height: 1.5em"
+							FORMATVALUE TARGET ADCS_PACKET ADCS_WHEEL_CONTROLLER_DERIVATIVE_GAIN %3.2e
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " s/rpm"
+								SETTING RAW "min-width: 5em; max-width: 5em"
+						END
+						LABEL ""
+						LABEL ""
+					END
+				END
+	
+			END
+	
+		END
+	
+	<%= render "_Separator_height.txt" %>
+
+	<%= render "_Telemetry_footer.txt" %>
+	
+	END
+
+END

@@ -1,0 +1,78 @@
+<%= render "_TPL_Telemetry_and_Commands_header.txt" %>
+SCROLLWINDOW
+	SETTING RAW "min-width: 75em; min-height: 20em; max-width: 75em; max-height: 20em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICALBOX "TELEMETRY" 0
+				SETTING BORDERCOLOR 'DodgerBlue; border-width: 0.3em; font-weight: bold; min-width: 38em; min-height: 4em'
+				<%= render "_Separator_height.txt" %>
+				MATRIXBYCOLUMNS 3
+					HORIZONTAL 0
+						LABEL "Run mode: "
+							SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+						VALUE TARGET TPL_PACKET TPL_RUN_MODE
+							SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+						LABEL ""
+							SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					END
+					LABEL ""
+					HORIZONTAL 0
+						LABEL "Current temperature: "
+							SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+						FORMATVALUE TARGET TPL_PACKET TPL_CURRENT_TEMPERATURE %4.1f
+							SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+						LABEL " degC"
+							SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					END			
+					HORIZONTAL 0
+						LABEL "Heater status: "
+							SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+						VALUE TARGET TPL_PACKET TPL_HEATER_SWITCH_STATUS
+							SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+						LABEL ""
+							SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					END
+					LABEL ""
+					HORIZONTAL 0
+						LABEL "Target temperature: "
+							SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+						FORMATVALUE TARGET TPL_PACKET TPL_TARGET_TEMPERATURE %4.1f
+							SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+						LABEL " degC"
+							SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					END
+				END
+			END
+			<%= render "_Separator_width.txt" %>
+			VERTICALBOX "COMMANDS" 0
+				SETTING BORDERCOLOR "DarkSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 25em; min-height: 4em; max-width: 25em"
+				<%= render "_Separator_height.txt" %>
+				HORIZONTAL 0
+					LABEL "Set run mode: "
+						SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+					NAMED_WIDGET tpl_mode COMBOBOX "STANDBY" "NOMINAL"
+						SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+					LABEL ""
+						SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					LABEL ""
+					BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} TPL_SET_RUN_MODE with PARAMETER_TPL_SET_RUN_MODE #{get_named_widget("tpl_mode").text}"); set_tlm("#{target_name} TPL_PACKET TPL_HEATER_SWITCH_STATUS = OFF")'
+						SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+				END
+				
+				HORIZONTAL 0
+					LABEL "Target temperature: "
+						SETTING RAW "min-width: 10.5em; min-height: 1.5em; max-width: 10.5em; max-height: 1.5em"
+					NAMED_WIDGET tpl_target TEXTFIELD 4 "28"
+						SETTING RAW "min-width: 5.5em; min-height: 1.15em; max-width: 5.5em; max-height: 1.15em"
+					LABEL " degC "
+						SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+					LABEL ""
+					BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} TPL_SET_TARGET_TEMPERATURE with PARAMETER_TPL_SET_TARGET_TEMPERATURE #{get_named_widget("tpl_target").text.to_i}")'
+						SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+				END
+			END
+		END
+		<%= render "_Separator_height.txt" %>
+		<%= render "_Telemetry_footer.txt" %>
+	END
+END

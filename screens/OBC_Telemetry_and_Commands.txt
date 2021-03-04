@@ -1,0 +1,251 @@
+<%= render "_OBC_Telemetry_and_Commands_header.txt" %>
+SCROLLWINDOW
+	SETTING RAW "min-width: 75em; min-height: 25em; max-width: 75em; max-height: 25em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "RESOURCES" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-width: 32em; min-height: 5em'
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "CPU load (approx.): "
+								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
+							VALUE TARGET OBC_PACKET OBC_PROCESSOR_LOAD RAW
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 1.5em; max-width: 1.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Current RAM usage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET OBC_PROCESSOR_PACKET OBC_CURRENT_RAM_USAGE_PERCENTAGE %3.2f
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					
+						LABEL ""
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Max. RAM usage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET OBC_PROCESSOR_PACKET OBC_MAXIMUM_RAM_USAGE_PERCENTAGE %3.2f
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					END
+				END
+			
+				<%= render "_Separator_height.txt" %>
+			
+				VERTICALBOX "HEALTH" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 32em; min-height: 5em'
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "CPU voltage: "
+								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
+							FORMATVALUE TARGET OBC_PROCESSOR_PACKET OBC_PROCESSOR_VOLTAGE %3.2f
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1.5em; max-width: 1.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "CPU temperature: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET OBC_PROCESSOR_PACKET OBC_PROCESSOR_TEMPERATURE %3.2f
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL " degC"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Clock uptime: "
+								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
+							VALUE TARGET OBC_PROCESSOR_PACKET OBC_UPTIME RAW
+								SETTING RAW "min-width: 6em; min-height: 1.15em; max-width: 6em; max-height: 1.15em"
+							LABEL " ms"
+								SETTING RAW "min-width: 1.5em; max-width: 1.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Clock error flag: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							VALUE TARGET OBC_PACKET OBC_CLOCK_ERROR
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+					END
+				END
+			END
+		
+			<%= render "_Separator_width.txt" %>
+		
+			VERTICAL 0
+				VERTICALBOX "TELEMETRY STORAGE" 0
+					SETTING BORDERCOLOR 'DarkSeaGreen; border-width: 0.3em; font-weight: bold; min-width: 39em; min-height: 10em'
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Storing TM in SD-card: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							VALUE TARGET OBC_PACKET OBC_STORE_TELEMETRY
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "TM storage error flag: "
+								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
+							VALUE TARGET OBC_PACKET OBC_TELEMETRY_STORAGE_ERROR
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+						END
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						HORIZONTAL 0
+							LABEL "Store TM in SD: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY ON")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY OFF")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Erase TM storaged in SD: "
+								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
+							BUTTON "ERASE" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_ERASE_STORED_TELEMETRY")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL "Downlink storaged TM in SD: "
+								SETTING RAW "min-width: 14em; min-height: 1.5em; max-width: 14em; max-height: 1.5em"
+							LABEL ""
+						END
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTAL 0
+							LABEL " - Start [y/m/dom/h/min/s]: "
+								SETTING RAW "min-width: 14em; min-height: 1.5em; max-width: 14em; max-height: 1.5em"
+							LABEL ""
+							NAMED_WIDGET Year_Start TEXTFIELD 4 "2050"
+								SETTING RAW "font-weight: bold; min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "-"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Month_Start TEXTFIELD 2 "12"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "-"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET DOM_Start TEXTFIELD 2 "31"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+						END
+						LABEL ""
+						HORIZONTAL 0
+							NAMED_WIDGET Hour_Start TEXTFIELD 2 "23"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Min_Start TEXTFIELD 2 "59"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Sec_Start TEXTFIELD 2 "59"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+						END
+					
+						HORIZONTAL 0
+							LABEL " - End [y/m/dom/h/min/s]: "
+								SETTING RAW "min-width: 14em; min-height: 1.5em; max-width: 14em; max-height: 1.5em"
+							LABEL ""
+							NAMED_WIDGET Year_End TEXTFIELD 4 "2050"
+								SETTING RAW "font-weight: bold; min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "-"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Month_End TEXTFIELD 2 "12"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL "-"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET DOM_End TEXTFIELD 2 "31"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+						END
+						LABEL ""
+						HORIZONTAL 0
+							NAMED_WIDGET Hour_End TEXTFIELD 2 "23"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Min_End TEXTFIELD 2 "59"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ":"
+								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+							NAMED_WIDGET Sec_End TEXTFIELD 2 "59"
+								SETTING RAW "font-weight: bold; min-width: 1.5em; min-height: 1.15em; max-width: 1.5em; max-height: 1.15em"
+								SETTING BACKCOLOR 180 180 180
+								SETTING TEXTCOLOR 0 0 0
+							LABEL ""
+								SETTING RAW "min-width: 6.5em; max-width: 6.5em"
+							BUTTON "DOWN" 'target_name = get_target_name("TARGET"); year_Start = "0x" + get_named_widget("Year_Start").text; month_Start = "0x" + get_named_widget("Month_Start").text; day_Start = "0x" + get_named_widget("DOM_Start").text; hour_Start = "0x" + get_named_widget("Hour_Start").text; min_Start = "0x" + get_named_widget("Min_Start").text; sec_Start = "0x" + get_named_widget("Sec_Start").text; year_End = "0x" + get_named_widget("Year_End").text; month_End = "0x" + get_named_widget("Month_End").text; day_End = "0x" + get_named_widget("DOM_End").text; hour_End = "0x" + get_named_widget("Hour_End").text; min_End = "0x" + get_named_widget("Min_End").text; sec_End = "0x" + get_named_widget("Sec_End").text; cmd("#{target_name} OBC_DOWNLOAD_STORED_TELEMETRY with PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_YEAR #{year_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MONTH #{month_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_DAY_OF_MONTH #{day_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_HOURS #{hour_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MINUTES #{min_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_SECONDS #{sec_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_YEAR #{year_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MONTH #{month_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_DAY_OF_MONTH #{day_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_HOURS #{hour_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MINUTES #{min_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_SECONDS #{sec_End}")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							LABEL ""
+						END
+					END
+				END
+			END
+		END
+	
+		<%= render "_Separator_height.txt" %>
+	
+		<%= render "_Telemetry_footer.txt" %>
+	
+	END
+	
+END

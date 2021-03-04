@@ -1,0 +1,4 @@
+SCREEN 2028 1092 0.9
+GLOBAL_SETTING LABELVALUELIMITSBAR COLORBLIND TRUE
+TITLE "ESAT EPS Telemetry and Commands"
+SETTING RAW "font-weight: bold; color: #808080; font-size: 30px"

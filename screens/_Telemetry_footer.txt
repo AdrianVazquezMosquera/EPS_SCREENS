@@ -1,0 +1,481 @@
+	VERTICALBOX "METADATA" 0
+		SETTING BORDERCOLOR 'Gray; border-width: 0.3em; font-weight: bold; min-width: 73em; min-height: 12em; max-height: 12em;'
+		<%= render "_Separator_height.txt" %>
+		HORIZONTAL 0
+			VERTICAL 0
+				MATRIXBYCOLUMNS 3
+					HORIZONTAL 0
+						LABEL "OBC "
+							SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1em; max-width: 2em; max-height: 1em"
+						LABEL "v"
+							SETTING RAW "font-weight: bold; min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_VERSION_NUMBER_MAJOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_VERSION_NUMBER_MINOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_VERSION_NUMBER_PATCH %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "ESAT (On Board)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "COSMOS (Ground)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT Time: "
+							SETTING RAW "min-width: 5em; min-height: 1em; max-width: 5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						FORMATVALUE TARGET OBC_Packet CCSDS_YEAR %4x CONVERTED 4
+							SETTING RAW "min-width: 2.5em; min-height: 1em; max-width: 2.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_DAY_OF_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL " "
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_HOURS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_MINUTES %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET OBC_Packet CCSDS_SECONDS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET OBC_Packet RECEIVED_TIMEFORMATTED
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT counter: "
+							SETTING RAW "min-width: 6.5em; min-height: 1em; max-width: 6.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET OBC_Packet CCSDS_SEQUENCE_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET OBC_Packet RECEIVED_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+				
+					HORIZONTAL 0
+						LABEL "EPS "
+							SETTING RAW "font-weight: bold; min-width: 2em; min-height: 1em; max-width: 2em; max-height: 1em"
+						LABEL "v"
+							SETTING RAW "font-weight: bold; min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_VERSION_NUMBER_MAJOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_VERSION_NUMBER_MINOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_VERSION_NUMBER_PATCH %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "ESAT (On Board)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "COSMOS (Ground)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT Time: "
+							SETTING RAW "min-width: 5em; min-height: 1em; max-width: 5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						FORMATVALUE TARGET EPS_Packet CCSDS_YEAR %4x CONVERTED 4
+							SETTING RAW "min-width: 2.5em; min-height: 1em; max-width: 2.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_DAY_OF_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL " "
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_HOURS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_MINUTES %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET EPS_Packet CCSDS_SECONDS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET EPS_Packet RECEIVED_TIMEFORMATTED
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT counter: "
+							SETTING RAW "min-width: 6.5em; min-height: 1em; max-width: 6.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET EPS_Packet CCSDS_SEQUENCE_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET EPS_Packet RECEIVED_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				END
+			END
+			<%= render "_Separator_width.txt" %>
+			VERTICAL 0
+				MATRIXBYCOLUMNS 3
+					HORIZONTAL 0
+						LABEL "ADCS "
+							SETTING RAW "font-weight: bold; min-width: 3em; min-height: 1em; max-width: 3em; max-height: 1em"
+						LABEL "v"
+							SETTING RAW "font-weight: bold; min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_VERSION_NUMBER_MAJOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_VERSION_NUMBER_MINOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_VERSION_NUMBER_PATCH %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "ESAT (On Board)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "COSMOS (Ground)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT Time: "
+							SETTING RAW "min-width: 5em; min-height: 1em; max-width: 5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						FORMATVALUE TARGET ADCS_Packet CCSDS_YEAR %4x CONVERTED 4
+							SETTING RAW "min-width: 2.5em; min-height: 1em; max-width: 2.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_DAY_OF_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL " "
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_HOURS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_MINUTES %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET ADCS_Packet CCSDS_SECONDS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET ADCS_Packet RECEIVED_TIMEFORMATTED
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT counter: "
+							SETTING RAW "min-width: 6.5em; min-height: 1em; max-width: 6.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET ADCS_Packet CCSDS_SEQUENCE_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET ADCS_Packet RECEIVED_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+					HORIZONTAL 0
+						<%= render "_Separator_height.txt" %>
+					END
+				
+					HORIZONTAL 0
+						LABEL "WIFI "
+							SETTING RAW "font-weight: bold; min-width: 3em; min-height: 1em; max-width: 3em; max-height: 1em"
+						LABEL "v"
+							SETTING RAW "font-weight: bold; min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_VERSION_NUMBER_MAJOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_VERSION_NUMBER_MINOR %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL "."
+							SETTING RAW "min-width: 0.5em; min-height: 1em; max-width: 0.5em; max-height: 1em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_VERSION_NUMBER_PATCH %1x CONVERTED 1
+							SETTING RAW "min-width: 1em; min-height: 1em; max-width: 1em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "ESAT (On Board)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						LABEL "COSMOS (Ground)"
+							SETTING RAW "min-width: 7.5em; min-height: 1em; max-width: 7.5em; max-height: 1em"
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+					HORIZONTAL 0
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT Time: "
+							SETTING RAW "min-width: 5em; min-height: 1em; max-width: 5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_YEAR %4x CONVERTED 4
+							SETTING RAW "min-width: 2.5em; min-height: 1em; max-width: 2.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL "-"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_DAY_OF_MONTH %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL " "
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_HOURS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_MINUTES %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ":"
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						FORMATVALUE TARGET WIFI_Connection_Status_Packet CCSDS_SECONDS %2x CONVERTED 2
+							SETTING RAW "min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET WIFI_Connection_Status_Packet RECEIVED_TIMEFORMATTED
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				
+					HORIZONTAL 0
+						LABEL "PKT counter: "
+							SETTING RAW "min-width: 6.5em; min-height: 1em; max-width: 6.5em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET WIFI_Connection_Status_Packet CCSDS_SEQUENCE_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+						LABEL ""
+					END
+					HORIZONTAL 0
+						VALUE TARGET WIFI_Connection_Status_Packet RECEIVED_COUNT
+							SETTING RAW "min-width: 12em; min-height: 1em; max-width: 12em; max-height: 1em"
+							SETTING BACKCOLOR 230 230 230
+						LABEL ""
+					END
+				END
+			END
+		END
+		HORIZONTAL 0
+			VERTICAL 0
+				<%= render "_Separator_height.txt" %>
+				HORIZONTALLINE
+					SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+				<%= render "_Separator_height.txt" %>
+			END
+		END
+		HORIZONTAL 0
+			LABEL "Set time [y/m/dom/h/min/s]: "
+				SETTING RAW "min-width: 14em; min-height: 1em; max-width: 14em; max-height: 1em"
+			LABEL ""
+				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"
+			NAMED_WIDGET Year TEXTFIELD 4 "2050"
+				SETTING RAW "font-weight:bold; min-width: 2.5em; min-height: 1em; max-width: 2.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL "-"
+				SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+			NAMED_WIDGET Month TEXTFIELD 2 "12"
+				SETTING RAW "font-weight:bold; min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL "-"
+				SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+			NAMED_WIDGET DOM TEXTFIELD 2 "31"
+				SETTING RAW "font-weight:bold; min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL " "
+				SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+			NAMED_WIDGET Hour TEXTFIELD 2 "23"
+				SETTING RAW "font-weight:bold; min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL ":"
+				SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+			NAMED_WIDGET Min TEXTFIELD 2 "59"
+				SETTING RAW "font-weight:bold; min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL ":"
+				SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+			NAMED_WIDGET Sec TEXTFIELD 2 "59"
+				SETTING RAW "font-weight:bold; min-width: 1.5em; min-height: 1em; max-width: 1.5em; max-height: 1em"
+				SETTING BACKCOLOR 180 180 180
+				SETTING TEXTCOLOR 0 0 0
+			LABEL ""
+				SETTING RAW "min-width: 1em; min-height: 1.15em; max-width: 1em; max-height: 1.15em"
+			BUTTON "OBC" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} OBC_SET_TIME with PARAMETER_OBC_SET_TIME_YEAR #{year}, PARAMETER_OBC_SET_TIME_MONTH #{month}, PARAMETER_OBC_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_OBC_SET_TIME_HOURS #{hour}, PARAMETER_OBC_SET_TIME_MINUTES #{min}, PARAMETER_OBC_SET_TIME_SECONDS #{sec}")'
+				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+			LABEL ""
+				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"	
+			BUTTON "ADCS" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} ADCS_SET_TIME with PARAMETER_ADCS_SET_TIME_YEAR #{year}, PARAMETER_ADCS_SET_TIME_MONTH #{month}, PARAMETER_ADCS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_ADCS_SET_TIME_HOURS #{hour}, PARAMETER_ADCS_SET_TIME_MINUTES #{min}, PARAMETER_ADCS_SET_TIME_SECONDS #{sec}")'
+				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+			LABEL ""
+				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"
+			BUTTON "EPS" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} EPS_SET_TIME with PARAMETER_EPS_SET_TIME_YEAR #{year}, PARAMETER_EPS_SET_TIME_MONTH #{month}, PARAMETER_EPS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_EPS_SET_TIME_HOURS #{hour}, PARAMETER_EPS_SET_TIME_MINUTES #{min}, PARAMETER_EPS_SET_TIME_SECONDS #{sec}")'
+				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                    TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                    SETTING LED_COLOR SET_TIME GREEN
+			LABEL ""
+				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"
+			BUTTON "WIFI" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} WIFI_SET_TIME with PARAMETER_WIFI_SET_TIME_YEAR #{year}, PARAMETER_WIFI_SET_TIME_MONTH #{month}, PARAMETER_WIFI_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_WIFI_SET_TIME_HOURS #{hour}, PARAMETER_WIFI_SET_TIME_MINUTES #{min}, PARAMETER_WIFI_SET_TIME_SECONDS #{sec}")'
+				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"			
+			LABEL ""		
+			LABEL ""
+		END
+	END

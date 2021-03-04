@@ -1,0 +1,4 @@
+SCREEN 1950 650 0.9
+GLOBAL_SETTING LABELVALUELIMITSBAR COLORBLIND TRUE
+TITLE "ESAT TPL Telemetry and Commands"
+SETTING RAW "font-weight: bold; color: #808080; font-size: 30px"

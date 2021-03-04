@@ -1,0 +1,566 @@
+<%= render "_EPS_Telemetry_and_Commands_header.txt" %>
+SCROLLWINDOW
+TABBOOK 
+TABITEM "EPS TC-TLM"
+	SETTING RAW "min-width: 80em; min-height: 42em; max-width: 80em; max-height: 42em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "SOLAR PANELS" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-height: 27em'
+					<%= render "_Separator_height.txt" %>
+					LABEL "Switched-mode Power Converters"
+						SETTING RAW "font-weight: bold"
+					HORIZONTALLINE
+						SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					<%= render "_Separator_height.txt" %>
+					HORIZONTAL 0
+						LABEL "Set mode: "
+								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+						BUTTON "MPPT" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_MAXIMUM_POWER_POINT_TRACKING_MODE")'
+							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
+                                        TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                        SETTING LED_COLOR MPPT_MODE GREEN
+                                          LABEL ""
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						BUTTON "SWEEP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWEEP_MODE")'
+							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
+                                        TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                        SETTING LED_COLOR SWEEP_MODE GREEN
+						LABEL ""
+						NAMED_WIDGET Fixed_Point TEXTFIELD 3 "0"
+							SETTING RAW "font-weight:bold; min-width: 3.5em; min-height: 1em; max-width: 3.5em; max-height: 1em"
+							SETTING BACKCOLOR 180 180 180
+							SETTING TEXTCOLOR 0 0 0
+						LABEL ""
+							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
+						BUTTON "FIXED" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_FIXED_MODE with PARAMETER_EPS_FIXED_MODE #{get_named_widget("Fixed_Point").text.to_i}")'
+							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
+                                        TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                        SETTING LED_COLOR FIXED_MODE GREEN
+						LABEL ""
+					END
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						VERTICALBOX "Solar Panel 1" 0
+							SETTING BORDERCOLOR 'DimGrey; border-width: 0.3em; font-weight: bold'
+							MATRIXBYCOLUMNS 2
+								LABEL "Run mode: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_MPPT_DRIVER_1_MODE
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Duty cycle [0-255]: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_MPPT_DRIVER_1_DUTY_CYCLE
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Input current: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_1_INPUT_CURRENT %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " mA"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Output current: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_1_OUTPUT_CURRENT %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " mA"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Input voltage: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_1_VOLTAGE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " V"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+						LABEL ""
+						VERTICALBOX "Solar Panel 2" 0
+							SETTING BORDERCOLOR 'DimGrey; border-width: 0.3em; font-weight: bold'
+							MATRIXBYCOLUMNS 2
+								LABEL "Run mode: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_MPPT_DRIVER_2_MODE
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Duty cycle [0-255]: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_MPPT_DRIVER_2_DUTY_CYCLE
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Input current: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_2_INPUT_CURRENT %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " mA"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Output current: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_2_OUTPUT_CURRENT %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " mA"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Input voltage: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_2_VOLTAGE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " V"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						LABEL "Direct Energy Transfer"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						VERTICALBOX "" 0
+								SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+							MATRIXBYCOLUMNS 2
+								LABEL "Error flag: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_DIRECT_ENERGY_TRANSFER_ERROR
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Output current: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_DIRECT_ENERGY_TRANSFER_CURRENT %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " mA"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+						LABEL ""
+						VERTICALBOX "" 0
+								SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+							MATRIXBYCOLUMNS 2
+								LABEL "Input voltage: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_DIRECT_ENERGY_TRANSFER_VOLTAGE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " V"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Shunt voltage: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_DIRECT_ENERGY_TRANSFER_SHUNT_VOLTAGE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " V"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+					
+						LABEL "Thermocouples"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						VERTICALBOX "Solar Panel 1" 0
+							SETTING BORDERCOLOR 'DimGrey; border-width: 0.3em; font-weight: bold'
+							MATRIXBYCOLUMNS 2
+								LABEL "Temperature: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_1_TEMPERATURE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " degC"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Sensor error: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_1_THERMOMETER_ERROR
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+						LABEL ""
+						VERTICALBOX "Solar Panel 2" 0
+							SETTING BORDERCOLOR 'DimGrey; border-width: 0.3em; font-weight: bold'
+							MATRIXBYCOLUMNS 2
+								LABEL "Temperature: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									FORMATVALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_2_TEMPERATURE %5.1f
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL " degC"
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							
+								LABEL "Sensor error: "
+									SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+								HORIZONTAL 0
+									VALUE TARGET EPS_PACKET EPS_SOLAR_PANEL_2_THERMOMETER_ERROR
+										SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+									LABEL ""
+										SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+								END
+							END
+						END
+					END
+				END
+		
+			END
+			
+			<%= render "_Separator_width.txt" %>
+			
+			VERTICAL 0
+				VERTICALBOX "POWER LINES" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 15em'
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						LABEL "Input"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Current: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_INPUT_LINE_CURRENT %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " mA"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Voltage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_INPUT_LINE_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						LABEL "3.3 V Bus"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Current (total): "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_3V3_LINE_CURRENT %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " mA"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Voltage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_3V3_LINE_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Switchable line state: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							VALUE TARGET EPS_PACKET EPS_3V3_LINE_SWITCH_STATE
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Switch line: "
+								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE ON")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE OFF")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                               TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                               SETTING LED_COLOR 3V3_SWITCH GREEN
+							LABEL ""
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						LABEL "5 V Bus"
+							SETTING RAW "font-weight: bold"
+						LABEL ""
+						LABEL ""
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						HORIZONTAL 0
+							LABEL "Current (total): "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_5V_LINE_CURRENT %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " mA"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Voltage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_5V_LINE_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Switchable line state: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							VALUE TARGET EPS_PACKET EPS_5V_LINE_SWITCH_STATE
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Switch line: "
+								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE ON")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE OFF")'
+								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                               TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                               SETTING LED_COLOR 5V_SWITCH GREEN
+							LABEL ""
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					END
+				END
+				<%= render "_Separator_height.txt" %>
+				VERTICALBOX "BATTERIES" 0
+					SETTING BORDERCOLOR "DarkSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 10em"
+					<%= render "_Separator_height.txt" %>
+					MATRIXBYCOLUMNS 3
+						HORIZONTAL 0
+							LABEL "Charge (approx.): "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							VALUE TARGET EPS_PACKET EPS_BATTERY_STATE_OF_CHARGE RAW
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " %"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Error flag: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							VALUE TARGET EPS_PACKET EPS_BATTERY_CONTROLLER_ERROR
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL ""
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Temperature: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_BATTERY_TEMPERATURE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " degC"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						LABEL ""
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+					
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+						<%= render "_Separator_height.txt" %>
+					
+						HORIZONTAL 0
+							LABEL "Current: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_BATTERY_CURRENT %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " mA"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Total voltage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_BATTERY_TOTAL_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					
+						HORIZONTAL 0
+							LABEL "Battery-1 voltage: "
+								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_BATTERY_1_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 2.5em; max-width: 2.5em"
+						END
+						LABEL ""
+						HORIZONTAL 0
+							LABEL "Battery-2 voltage: "
+								SETTING RAW "min-width: 9.5em; min-height: 1.5em; max-width: 9.5em; max-height: 1.5em"
+							FORMATVALUE TARGET EPS_PACKET EPS_BATTERY_2_VOLTAGE %5.1f
+								SETTING RAW "min-width: 4.5em; min-height: 1.15em; max-width: 4.5em; max-height: 1.15em"
+							LABEL " V"
+								SETTING RAW "min-width: 1em; max-width: 1em"
+						END
+					END
+				END
+		
+			END
+		
+		END
+	
+	<%= render "_Separator_height.txt" %>
+	
+	<%= render "_Telemetry_footer.txt" %>
+
+	END
+END
+TABITEM "ACK NACK History"
+ SETTING RAW "min-width: 80em; min-height: 42em; max-width: 80em; max-height: 42em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "EPS TELECOMMAND ACKs" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+        						SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                  DEMOTABLE TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                        
+                                        END
+END
+END
+
+
+
+                  
+                                  <%= render "_Separator_width.txt" %>
+                                  VERTICAL 0
+                                  VERTICALBOX "EPS TELECOMMAND NACKs" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the non received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+							SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                 DEMOTABLE TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+END
+END
+END
+END

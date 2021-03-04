@@ -1,0 +1,29 @@
+<%= render "_EPS_ACK_header.txt" %>
+SCROLLWINDOW
+TABBOOK 
+  TABITEM "1"
+    DEMOTABLE TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+  END
+  TABITEM "2" 
+
+ SETTING RAW "min-width: 40em; min-height: 32em; max-width: 40em; max-height: 32em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "EPS TELECOMMANDS" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-height: 27em'
+					<%= render "_Separator_height.txt" %>
+					LABEL "State of the possible EPS telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+					
+						VERTICALBOX "" 0
+								SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+		
+
+
+     END
+  END                   

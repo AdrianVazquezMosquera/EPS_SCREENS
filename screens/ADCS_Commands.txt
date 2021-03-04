@@ -1,0 +1,602 @@
+<%= render "_ADCS_Commands_header.txt" %>
+SCROLLWINDOW
+	SETTING RAW "min-width: 31em; min-height: 60em; max-width: 31em; max-height: 60em"
+	VERTICALBOX "SUBSYSTEM" 0
+		SETTING BORDERCOLOR 'MidnightBlue; border-width: 0.3em; font-weight: bold'
+		<%= render "_Separator_height.txt" %>
+		MATRIXBYCOLUMNS 4
+			LABEL "Control"
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "Stop actuators: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				BUTTON "STOP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_STOP_ACTUATORS")'
+					SETTING RAW "font-weight: bold; color: red; border-radius: 0.5em; border: 0.05em solid MidnightBlue; background-color: CornflowerBlue; min-height: 1.25em; min-width: 4em; max-height: 1.25em; max-width: 4em"
+			END
+		END
+	END
+	VERTICALBOX "ATTITUDE CONTROLLER" 0
+		SETTING BORDERCOLOR 'DarkCyan; border-width: 0.3em; font-weight: bold'
+		<%= render "_Separator_height.txt" %>
+		MATRIXBYCOLUMNS 4
+			LABEL "Run Modes"
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "Follow magnetic attitude: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Magnetic_Attitude TEXTFIELD 3 "0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " deg"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_FOLLOW_MAGNETIC_TARGET with PARAMETER_ADCS_FOLLOW_MAGNETIC_TARGET #{get_named_widget("Magnetic_Attitude").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Follow solar attitude: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Solar_Attitude TEXTFIELD 3 "0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " deg"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_FOLLOW_SOLAR_TARGET with PARAMETER_ADCS_FOLLOW_SOLAR_TARGET #{get_named_widget("Solar_Attitude").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Detumble: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_DETUMBLE")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+		
+			LABEL "Settings: "
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "Set actuator: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Actuator COMBOBOX "MAGNETORQUER" "WHEEL"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS #{get_named_widget("Actuator").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Use gyroscope: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Enable_Gyro COMBOBOX "ON" "OFF"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE #{get_named_widget("Enable_Gyro").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "PID proportional gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Attitude_Kp TEXTFIELD 9 "5.5"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " 1/deg"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Attitude_Kp").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "PID integral gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Attitude_Ki TEXTFIELD 9 "0.0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " 1/(deg s)"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Attitude_Ki").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "PID derivative gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Attitude_Kd TEXTFIELD 9 "22.0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " s/deg"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Attitude_Kd").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Reset PID integral error: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_RESET_ERROR_INTEGRAL")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Set min. thresholds: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				LABEL "+/- "
+					SETTING RAW "min-width: 2em; max-width: 2em"
+				NAMED_WIDGET Angle_Dead TEXTFIELD 10 "2"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " deg"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			LABEL ""
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				LABEL "+/- "
+					SETTING RAW "min-width: 2em; max-width: 2em"
+				NAMED_WIDGET Velocity_Dead TEXTFIELD 10 "1"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " deg/s"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGLE #{get_named_widget("Angle_Dead").text.to_i}, PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGULAR_VELOCITY #{get_named_widget("Velocity_Dead").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Set max. threshold: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				LABEL "+/- "
+					SETTING RAW "min-width: 2em; max-width: 2em"
+				NAMED_WIDGET Velocity_Detumbling TEXTFIELD 5 "40"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " deg/s"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD #{get_named_widget("Velocity_Detumbling").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		END
+	END
+	VERTICALBOX "REACTION WHEEL CONTROLLER" 0
+		SETTING BORDERCOLOR 'DarkSlateBlue; border-width: 0.3em; font-weight: bold'
+		<%= render "_Separator_height.txt" %>
+		MATRIXBYCOLUMNS 4
+			LABEL "Run Modes"
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "Duty cycle: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Wheel_Duty TEXTFIELD 4 "0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " %"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_SET_DUTY_CYCLE with PARAMETER_ADCS_WHEEL_SET_DUTY_CYCLE #{get_named_widget("Wheel_Duty").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Wheel speed: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Wheel_Speed TEXTFIELD 5 "0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " rpm"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_SET_SPEED with PARAMETER_ADCS_WHEEL_SET_SPEED #{get_named_widget("Wheel_Speed").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Reset speed controller: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'send = message_box("WARNING\n\nThis command may have unintended side effects!\n\nFor ADCS 1.x.y board version users:\nThis command will switch the 5 V line on and off, thus affecting any other subsystem powered by this line. In addition, the wheel must be fully stopped before sending this command.\n\nFor ADCS 2.x.y board version users:\nIf the magnetorquers are powered on, this command will also toggle them off and on. This command can be issued while the wheel is spinning.\n\nAre you sure that you want to reset the speed controller?", "Yes", "No", false); if send == "Yes"; target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_RESET_ELECTRONIC_SPEED_CONTROLLER"); end'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+			<%= render "_Separator_height.txt" %>
+		
+			LABEL "Settings: "
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "PID proportional gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Wheel_Kp TEXTFIELD 9 "1.5"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " 1/rpm"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Wheel_Kp").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "PID integral gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Wheel_Ki TEXTFIELD 9 "0.3"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " 1/(rpm s)"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Wheel_Ki").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "PID derivative gain: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Wheel_Kd TEXTFIELD 9 "0.0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL " s/rpm"
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Wheel_Kd").text.to_f}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Reset PID integral error: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_RESET_ERROR_INTEGRAL")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		END
+	END
+	VERTICALBOX "MAGNETORQUERS CONTROLLER" 0
+		SETTING BORDERCOLOR 'DarkSeaGreen; border-width: 0.3em; font-weight: bold'
+		<%= render "_Separator_height.txt" %>
+		MATRIXBYCOLUMNS 4
+			LABEL "Run Modes"
+				SETTING RAW "font-weight: bold"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+			END
+		
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+			HORIZONTALLINE
+				SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+		
+			LABEL "Enable: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Enable_MTQ COMBOBOX "ON" "OFF"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_ENABLE with PARAMETER_ADCS_MAGNETORQUER_ENABLE #{get_named_widget("Enable_MTQ").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "X-MTQ polarity: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Polarity_MAGNETORQUER_X COMBOBOX "POSITIVE" "NEGATIVE"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_X_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_X_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_X").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Y-MTQ polarity: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET Polarity_MAGNETORQUER_Y COMBOBOX "POSITIVE" "NEGATIVE"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_Y_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_Y_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_Y").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Max. torque: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET MTQ_Direction COMBOBOX "POSITIVE" "NEGATIVE"
+					SETTING RAW "min-width: 7.5em; min-height: 1.15em; max-width: 7.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE with PARAMETER_ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE #{get_named_widget("MTQ_Direction").text}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		
+			LABEL "Iterations for demagnetization: "
+				SETTING RAW "min-width: 18em; min-height: 1.5em; max-width: 18em; max-height: 1.5em"
+			HORIZONTAL 0
+				LABEL ""
+			END
+			HORIZONTAL 0
+				LABEL ""
+				NAMED_WIDGET MTQ_Iterations TEXTFIELD 5 "0"
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+				LABEL ""
+					SETTING RAW "min-width: 5em; max-width: 5em"
+				LABEL ""
+					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
+			END
+			HORIZONTAL 0
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_DEMAGNETIZE with PARAMETER_ADCS_MAGNETORQUER_DEMAGNETIZE_CYCLES #{get_named_widget("MTQ_Iterations").text.to_i}")'
+					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+			END
+		END
+	END
+END
+

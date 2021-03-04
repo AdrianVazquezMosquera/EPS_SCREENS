@@ -1,0 +1,2 @@
+LABEL ""
+	SETTING RAW "min-width: 0.25em"
