@@ -459,22 +459,36 @@
 				SETTING TEXTCOLOR 0 0 0
 			LABEL ""
 				SETTING RAW "min-width: 1em; min-height: 1.15em; max-width: 1em; max-height: 1.15em"
-			BUTTON "OBC" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} OBC_SET_TIME with PARAMETER_OBC_SET_TIME_YEAR #{year}, PARAMETER_OBC_SET_TIME_MONTH #{month}, PARAMETER_OBC_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_OBC_SET_TIME_HOURS #{hour}, PARAMETER_OBC_SET_TIME_MINUTES #{min}, PARAMETER_OBC_SET_TIME_SECONDS #{sec}")'
+			BUTTON "OBC" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} OBC_ACK_PACKET OBC_ACK_STATUS = 97"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} OBC_SET_TIME with PARAMETER_OBC_SET_TIME_YEAR #{year}, PARAMETER_OBC_SET_TIME_MONTH #{month}, PARAMETER_OBC_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_OBC_SET_TIME_HOURS #{hour}, PARAMETER_OBC_SET_TIME_MINUTES #{min}, PARAMETER_OBC_SET_TIME_SECONDS #{sec}")'
 				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                    TIMEDLED TARGET OBC_ACK_PACKET OBC_ACK_STATUS
+                    SETTING LED_COLOR ACKS_SET-TIME GREEN
+			SETTING LED_COLOR SEND_SET-TIME ORANGE
+                    SETTING LED_COLOR NACK_SET-TIME RED
 			LABEL ""
 				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"	
-			BUTTON "ADCS" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} ADCS_SET_TIME with PARAMETER_ADCS_SET_TIME_YEAR #{year}, PARAMETER_ADCS_SET_TIME_MONTH #{month}, PARAMETER_ADCS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_ADCS_SET_TIME_HOURS #{hour}, PARAMETER_ADCS_SET_TIME_MINUTES #{min}, PARAMETER_ADCS_SET_TIME_SECONDS #{sec}")'
+			BUTTON "ADCS" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 99"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} ADCS_SET_TIME with PARAMETER_ADCS_SET_TIME_YEAR #{year}, PARAMETER_ADCS_SET_TIME_MONTH #{month}, PARAMETER_ADCS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_ADCS_SET_TIME_HOURS #{hour}, PARAMETER_ADCS_SET_TIME_MINUTES #{min}, PARAMETER_ADCS_SET_TIME_SECONDS #{sec}")'
 				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                    TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                    SETTING LED_COLOR ACKS_SET-TIME GREEN
+			SETTING LED_COLOR SEND_SET-TIME ORANGE
+                    SETTING LED_COLOR NACK_SET-TIME RED
 			LABEL ""
 				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"
-			BUTTON "EPS" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} EPS_SET_TIME with PARAMETER_EPS_SET_TIME_YEAR #{year}, PARAMETER_EPS_SET_TIME_MONTH #{month}, PARAMETER_EPS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_EPS_SET_TIME_HOURS #{hour}, PARAMETER_EPS_SET_TIME_MINUTES #{min}, PARAMETER_EPS_SET_TIME_SECONDS #{sec}")'
+			BUTTON "EPS" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} EPS_ACK_PACKET EPS_ACK_STATUS = 94"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} EPS_SET_TIME with PARAMETER_EPS_SET_TIME_YEAR #{year}, PARAMETER_EPS_SET_TIME_MONTH #{month}, PARAMETER_EPS_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_EPS_SET_TIME_HOURS #{hour}, PARAMETER_EPS_SET_TIME_MINUTES #{min}, PARAMETER_EPS_SET_TIME_SECONDS #{sec}")'
 				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
                     TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                    SETTING LED_COLOR SET_TIME GREEN
+                    SETTING LED_COLOR ACKS_SET-TIME GREEN
+			SETTING LED_COLOR SEND_SET-TIME ORANGE
+                    SETTING LED_COLOR NACK_SET-TIME RED
 			LABEL ""
 				SETTING RAW "min-width: 0.5em; min-height: 1.15em; max-width: 0.5em; max-height: 1.15em"
-			BUTTON "WIFI" 'target_name = get_target_name("TARGET"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} WIFI_SET_TIME with PARAMETER_WIFI_SET_TIME_YEAR #{year}, PARAMETER_WIFI_SET_TIME_MONTH #{month}, PARAMETER_WIFI_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_WIFI_SET_TIME_HOURS #{hour}, PARAMETER_WIFI_SET_TIME_MINUTES #{min}, PARAMETER_WIFI_SET_TIME_SECONDS #{sec}")'
-				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"			
+			BUTTON "WIFI" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 92"); year = "0x" + get_named_widget("Year").text; month = "0x" + get_named_widget("Month").text; day = "0x" + get_named_widget("DOM").text; hour = "0x" + get_named_widget("Hour").text; min = "0x" + get_named_widget("Min").text; sec = "0x" + get_named_widget("Sec").text; cmd("#{target_name} WIFI_SET_TIME with PARAMETER_WIFI_SET_TIME_YEAR #{year}, PARAMETER_WIFI_SET_TIME_MONTH #{month}, PARAMETER_WIFI_SET_TIME_DAY_OF_MONTH #{day}, PARAMETER_WIFI_SET_TIME_HOURS #{hour}, PARAMETER_WIFI_SET_TIME_MINUTES #{min}, PARAMETER_WIFI_SET_TIME_SECONDS #{sec}")'
+				SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"	
+                    TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                    SETTING LED_COLOR ACKS_SET-TIME GREEN
+			SETTING LED_COLOR SEND_SET-TIME ORANGE
+                    SETTING LED_COLOR NACK_SET-TIME RED		
 			LABEL ""		
 			LABEL ""
 		END

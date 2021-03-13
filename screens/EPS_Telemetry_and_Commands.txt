@@ -17,16 +17,20 @@ TABITEM "EPS TC-TLM"
 					HORIZONTAL 0
 						LABEL "Set mode: "
 								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
-						BUTTON "MPPT" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_MAXIMUM_POWER_POINT_TRACKING_MODE")'
+						BUTTON "MPPT" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} EPS_ACK_PACKET EPS_ACK_STATUS = 99"); cmd("#{target_name} EPS_MAXIMUM_POWER_POINT_TRACKING_MODE")'
 							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
                                         TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                                        SETTING LED_COLOR MPPT_MODE GREEN
+                                        SETTING LED_COLOR ACKS_MPPT-MODE GREEN
+                                        SETTING LED_COLOR SEND_MPPT-MODE ORANGE
+                                        SETTING LED_COLOR NACK_MPPT-MODE RED
                                           LABEL ""
 							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
-						BUTTON "SWEEP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWEEP_MODE")'
+						BUTTON "SWEEP" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} EPS_ACK_PACKET EPS_ACK_STATUS = 98"); cmd("#{target_name} EPS_SWEEP_MODE")'
 							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
                                         TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                                        SETTING LED_COLOR SWEEP_MODE GREEN
+                                        SETTING LED_COLOR ACKS_SWEEP-MODE GREEN
+                                        SETTING LED_COLOR SEND_SWEEP-MODE ORANGE
+                                        SETTING LED_COLOR NACK_SWEEP-MODE RED
 						LABEL ""
 						NAMED_WIDGET Fixed_Point TEXTFIELD 3 "0"
 							SETTING RAW "font-weight:bold; min-width: 3.5em; min-height: 1em; max-width: 3.5em; max-height: 1em"
@@ -34,10 +38,12 @@ TABITEM "EPS TC-TLM"
 							SETTING TEXTCOLOR 0 0 0
 						LABEL ""
 							SETTING RAW "min-width: 0.5em; max-width: 0.5em"
-						BUTTON "FIXED" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_FIXED_MODE with PARAMETER_EPS_FIXED_MODE #{get_named_widget("Fixed_Point").text.to_i}")'
+						BUTTON "FIXED" 'target_name = get_target_name("TARGET"); set_tlm("ESAT_COM04 EPS_ACK_PACKET EPS_ACK_STATUS = 97"); cmd("#{target_name} EPS_FIXED_MODE with PARAMETER_EPS_FIXED_MODE #{get_named_widget("Fixed_Point").text.to_i}")'
 							SETTING RAW "min-width: 3.5em; min-height: 1.15em; max-width: 3.5em; max-height: 1.15em"
                                         TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                                        SETTING LED_COLOR FIXED_MODE GREEN
+                                        SETTING LED_COLOR ACKS_FIXED-MODE GREEN
+										SETTING LED_COLOR SEND_FIXED-MODE ORANGE
+                                        SETTING LED_COLOR NACK_FIXED-MODE RED
 						LABEL ""
 					END
 					<%= render "_Separator_height.txt" %>
@@ -353,12 +359,14 @@ TABITEM "EPS TC-TLM"
 						HORIZONTAL 0
 							LABEL "Switch line: "
 								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
-							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE ON")'
+							BUTTON "ON" 'target_name = get_target_name("TARGET"); set_tlm("ESAT_COM04 EPS_ACK_PACKET EPS_ACK_STATUS = 96"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE ON")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
-							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE OFF")'
+							BUTTON "OFF" 'target_name = get_target_name("TARGET"); set_tlm("ESAT_COM04 EPS_ACK_PACKET EPS_ACK_STATUS = 96"); cmd("#{target_name} EPS_SWITCH_3V3_LINE with PARAMETER_EPS_SWITCH_3V3_LINE OFF")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
                                                TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                                               SETTING LED_COLOR 3V3_SWITCH GREEN
+                                               SETTING LED_COLOR ACKS_3V3-SWITCH GREEN
+											   SETTING LED_COLOR SEND_3V3-SWITCH ORANGE
+                                        	   SETTING LED_COLOR NACK_3V3-SWITCH RED
 							LABEL ""
 								SETTING RAW "min-width: 1em; max-width: 1em"
 						END
@@ -409,12 +417,14 @@ TABITEM "EPS TC-TLM"
 						HORIZONTAL 0
 							LABEL "Switch line: "
 								SETTING RAW "min-height: 1.5em; max-height: 1.5em"
-							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE ON")'
+							BUTTON "ON" 'target_name = get_target_name("TARGET"); set_tlm("ESAT_COM04 EPS_ACK_PACKET EPS_ACK_STATUS = 95"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE ON")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
-							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE OFF")'
+							BUTTON "OFF" 'target_name = get_target_name("TARGET"); set_tlm("ESAT_COM04 EPS_ACK_PACKET EPS_ACK_STATUS = 95"); cmd("#{target_name} EPS_SWITCH_5V_LINE with PARAMETER_EPS_SWITCH_5V_LINE OFF")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
                                                TIMEDLED TARGET EPS_ACK_PACKET EPS_ACK_STATUS
-                                               SETTING LED_COLOR 5V_SWITCH GREEN
+                                               SETTING LED_COLOR ACKS_5V-SWITCH GREEN
+											   SETTING LED_COLOR SEND_5V-SWITCH ORANGE
+                                        	   SETTING LED_COLOR NACK_5V-SWITCH RED
 							LABEL ""
 								SETTING RAW "min-width: 1em; max-width: 1em"
 						END
@@ -559,7 +569,7 @@ END
 							SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
 						
 		
-                                 DEMOTABLE TARGET EPS_ACK_PACKET EPS_ACK_STATUS
+                                 DEMOTABLES TARGET EPS_ACK_PACKET EPS_ACK_STATUS
 END
 END
 END

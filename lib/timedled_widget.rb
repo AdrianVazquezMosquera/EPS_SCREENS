@@ -36,6 +36,7 @@ module Cosmos
       super(target_name, packet_name, item_name, value_type)
       @time_item_name = time_item_name.to_s
       @previous_seconds = 0
+      @previous_data = 0
       @width = width.to_i
       @height = height.to_i
       # Add some sensible defaults, all others must be added using settings
@@ -78,17 +79,20 @@ module Cosmos
       data  = nil
       t_sec = nil
 
+      previous_color = @color
+
       tlm_items, _, _, _ = get_tlm_values(@items)
       data = tlm_items[0]
       t_sec = tlm_items[1]
 
-      if (@previous_seconds == t_sec || t_sec == 0 || @previous_seconds == 0) 
-       @color = @color ? Cosmos::getColor(Qt::black) : Cosmos::BLACK
-      else 
+      if ((@previous_data != data || @previous_seconds != t_sec) && @previous_seconds != 0) #
         @color = @colors[data.to_s] # Returns nil if not found
         @color = @colors['ANY'] unless @color # Check for ANY value
         @color = @color ? Cosmos::getColor(@color) : Cosmos::BLACK # default to black
+      elsif (@color != Cosmos::getColor("orange")) 
+        @color = @color ? Cosmos::getColor(Qt::black) : Cosmos::BLACK
       end
+
       @brush = @@brushes[@color]
       unless @brush
         gradient = Qt::RadialGradient.new(5, 5, 50, 5, 5)
@@ -99,6 +103,7 @@ module Cosmos
       end
       update() # Fire the paintEvent handler
       @previous_seconds = t_sec
+      @previous_data = data
     end
 
     def paintEvent(event)

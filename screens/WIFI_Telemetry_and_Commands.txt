@@ -1,5 +1,7 @@
 <%= render "_WIFI_Telemetry_and_Commands_header.txt" %>
 SCROLLWINDOW
+TABBOOK 
+TABITEM "WIFI TC-TLM"
 	SETTING RAW "min-width: 75em; min-height: 39em; max-width: 75em; max-height: 39em"
 	VERTICAL 0
 		HORIZONTAL 0
@@ -59,29 +61,45 @@ SCROLLWINDOW
 						HORIZONTAL 0
 							LABEL "Connect: "
 								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_CONNECT")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 99"); cmd("#{target_name} WIFI_CONNECT")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_WIFI-CONNECT GREEN
+                                                SETTING LED_COLOR SEND_WIFI-CONNECT ORANGE
+                                                SETTING LED_COLOR NACK_WIFI-CONNECT RED
 						END
 						LABEL ""
 						HORIZONTAL 0
 							LABEL "Disconnect: "
 								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_DISCONNECT")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 98"); cmd("#{target_name} WIFI_DISCONNECT")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_WIFI-DISCONNECT GREEN
+                                                SETTING LED_COLOR SEND_WIFI-DISCONNECT ORANGE
+                                                SETTING LED_COLOR NACK_WIFI-DISCONNECT RED
 						END
 					
 						HORIZONTAL 0
 							LABEL "Load settings: "
 								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_READ_CONFIGURATION")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 97"); cmd("#{target_name} WIFI_READ_CONFIGURATION")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_READ-CONFIGURATION GREEN
+                                                SETTING LED_COLOR SEND_READ-CONFIGURATION ORANGE
+                                                SETTING LED_COLOR NACK_READ-CONFIGURATION RED
 						END
 						LABEL ""
 						HORIZONTAL 0
 							LABEL "Save settings: "
 								SETTING RAW "min-width: 8em; min-height: 1.5em; max-width: 8em; max-height: 1.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_WRITE_CONFIGURATION")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 91"); cmd("#{target_name} WIFI_WRITE_CONFIGURATION")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_WRITE-CONFIGURATION GREEN
+                                                SETTING LED_COLOR SEND_WRITE-CONFIGURATION ORANGE
+                                                SETTING LED_COLOR NACK_WRITE-CONFIGURATION RED
 						END
 					END
 				END
@@ -154,8 +172,12 @@ SCROLLWINDOW
 						END
 						HORIZONTAL 0
 							LABEL ""
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name}","WIFI_SET_NETWORK_SSID","PARAMETER_WIFI_SET_NETWORK_SSID" => get_named_widget("SSID_Input").text)'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 95"); cmd("#{target_name}","WIFI_SET_NETWORK_SSID","PARAMETER_WIFI_SET_NETWORK_SSID" => get_named_widget("SSID_Input").text)'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_SET-NETWORK-SSID GREEN
+                                                SETTING LED_COLOR SEND_SET-NETWORK-SSID ORANGE
+                                                SETTING LED_COLOR NACK_SET-NETWORK-SSID RED
 						END
 					
 						LABEL "Set network passphrase: "
@@ -168,8 +190,12 @@ SCROLLWINDOW
 						END
 						HORIZONTAL 0
 							LABEL ""
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name}","WIFI_SET_NETWORK_PASSPHRASE","PARAMETER_WIFI_SET_NETWORK_PASSPHRASE" => get_named_widget("Passphrase_Input").text)'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 96"); cmd("#{target_name}","WIFI_SET_NETWORK_PASSPHRASE","PARAMETER_WIFI_SET_NETWORK_PASSPHRASE" => get_named_widget("Passphrase_Input").text)'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_SET-PASSPHRASE GREEN
+                                                SETTING LED_COLOR SEND_SET-PASSPHRASE ORANGE
+                                                SETTING LED_COLOR NACK_SET-PASSPHRASE RED
 						END
 					END
 				END
@@ -502,8 +528,12 @@ SCROLLWINDOW
 								SETTING TEXTCOLOR 0 0 0
 							LABEL ""
 								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_SERVER_ADDRESS with PARAMETER_WIFI_SET_SERVER_ADDRESS #{get_named_widget("Server_Address").text}")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 94"); cmd("#{target_name} WIFI_SET_SERVER_ADDRESS with PARAMETER_WIFI_SET_SERVER_ADDRESS #{get_named_widget("Server_Address").text}")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_SET-SERVER-ADDRESS GREEN
+                                                SETTING LED_COLOR SEND_SET-SERVER-ADDRESS ORANGE
+                                                SETTING LED_COLOR NACK_SET-SERVER-ADDRESS RED
 						END
 					
 						HORIZONTAL 0
@@ -523,8 +553,12 @@ SCROLLWINDOW
 								SETTING TEXTCOLOR 0 0 0
 							LABEL ""
 								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
-							BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} WIFI_SET_SERVER_PORT with PARAMETER_WIFI_SET_SERVER_PORT #{get_named_widget("Server_port").text}")'
+							BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} WIFI_ACK_PACKET WIFI_ACK_STATUS = 93"); cmd("#{target_name} WIFI_SET_SERVER_PORT with PARAMETER_WIFI_SET_SERVER_PORT #{get_named_widget("Server_port").text}")'
 								SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                               TIMEDLED TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_SET-SERVER-PORT GREEN
+                                                SETTING LED_COLOR SEND_SET-SERVER-PORT ORANGE
+                                                SETTING LED_COLOR NACK_SET-SERVER-PORT RED
 						END
 					END
 				END
@@ -578,4 +612,52 @@ SCROLLWINDOW
 	
 	END
 	
+END
+
+TABITEM "ACK NACK History"
+SETTING RAW "min-width: 80em; min-height: 42em; max-width: 80em; max-height: 42em"
+	VERTICAL 0
+		HORIZONTAL 0
+			VERTICAL 0
+				VERTICALBOX "EPS TELECOMMAND ACKs" 0
+					SETTING BORDERCOLOR 'CornflowerBlue; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+        						SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                  DEMOTABLE TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+                                        
+                                        END
+END
+END
+
+
+
+                  
+                                  <%= render "_Separator_width.txt" %>
+                                  VERTICAL 0
+                                  VERTICALBOX "EPS TELECOMMAND NACKs" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the non received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+							SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                 DEMOTABLES TARGET WIFI_ACK_PACKET WIFI_ACK_STATUS
+END
+END
+END
 END

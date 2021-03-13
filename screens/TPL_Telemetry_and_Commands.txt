@@ -57,6 +57,8 @@ SCROLLWINDOW
 					LABEL ""
 					BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} TPL_SET_RUN_MODE with PARAMETER_TPL_SET_RUN_MODE #{get_named_widget("tpl_mode").text}"); set_tlm("#{target_name} TPL_PACKET TPL_HEATER_SWITCH_STATUS = OFF")'
 						SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                        TIMEDLED TARGET TPL_PACKET TPL_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_SET-MODE GREEN
 				END
 				
 				HORIZONTAL 0
@@ -69,6 +71,8 @@ SCROLLWINDOW
 					LABEL ""
 					BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} TPL_SET_TARGET_TEMPERATURE with PARAMETER_TPL_SET_TARGET_TEMPERATURE #{get_named_widget("tpl_target").text.to_i}")'
 						SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                        TIMEDLED TARGET TPL_PACKET TPL_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_TARGET-TEMPERATURE GREEN
 				END
 			END
 		END

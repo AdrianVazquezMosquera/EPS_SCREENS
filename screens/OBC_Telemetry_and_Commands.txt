@@ -1,5 +1,7 @@
 <%= render "_OBC_Telemetry_and_Commands_header.txt" %>
 SCROLLWINDOW
+TABBOOK 
+TABITEM "OBC TC-TLM"
 	SETTING RAW "min-width: 75em; min-height: 25em; max-width: 75em; max-height: 25em"
 	VERTICAL 0
 		HORIZONTAL 0
@@ -125,20 +127,28 @@ SCROLLWINDOW
 						HORIZONTAL 0
 							LABEL "Store TM in SD: "
 								SETTING RAW "min-width: 11.5em; min-height: 1.5em; max-width: 11.5em; max-height: 1.5em"
-							BUTTON "ON" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY ON")'
+							BUTTON "ON" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} OBC_ACK_PACKET OBC_ACK_STATUS = 96"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY ON")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
 							LABEL ""
 								SETTING RAW "min-width: 0.5em; max-width: 0.5em"
-							BUTTON "OFF" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY OFF")'
+							BUTTON "OFF" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} OBC_ACK_PACKET OBC_ACK_STATUS = 96"); cmd("#{target_name} OBC_STORE_TELEMETRY with PARAMETER_OBC_STORE_TELEMETRY OFF")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                              TIMEDLED TARGET OBC_ACK_PACKET OBC_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_STORE-TELEMETRY GREEN
+                                  		 SETTING LED_COLOR SEND_STORE-TELEMETRY ORANGE
+                                                SETTING LED_COLOR NACK_STORE-TELEMETRY RED
 							LABEL ""
 						END
 						LABEL ""
 						HORIZONTAL 0
 							LABEL "Erase TM storaged in SD: "
 								SETTING RAW "min-width: 12.5em; min-height: 1.5em; max-width: 12.5em; max-height: 1.5em"
-							BUTTON "ERASE" 'target_name = get_target_name("TARGET"); cmd("#{target_name} OBC_ERASE_STORED_TELEMETRY")'
+							BUTTON "ERASE" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} OBC_ACK_PACKET OBC_ACK_STATUS = 98"); cmd("#{target_name} OBC_ERASE_STORED_TELEMETRY")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                              TIMEDLED TARGET OBC_ACK_PACKET OBC_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_ERASE-STORED-TELEMETRY GREEN
+                                  		 SETTING LED_COLOR SEND_ERASE-STORED-TELEMETRY ORANGE
+                                                SETTING LED_COLOR NACK_ERASE-STORED-TELEMETRY RED
 							LABEL ""
 						END
 					
@@ -233,9 +243,14 @@ SCROLLWINDOW
 								SETTING TEXTCOLOR 0 0 0
 							LABEL ""
 								SETTING RAW "min-width: 6.5em; max-width: 6.5em"
-							BUTTON "DOWN" 'target_name = get_target_name("TARGET"); year_Start = "0x" + get_named_widget("Year_Start").text; month_Start = "0x" + get_named_widget("Month_Start").text; day_Start = "0x" + get_named_widget("DOM_Start").text; hour_Start = "0x" + get_named_widget("Hour_Start").text; min_Start = "0x" + get_named_widget("Min_Start").text; sec_Start = "0x" + get_named_widget("Sec_Start").text; year_End = "0x" + get_named_widget("Year_End").text; month_End = "0x" + get_named_widget("Month_End").text; day_End = "0x" + get_named_widget("DOM_End").text; hour_End = "0x" + get_named_widget("Hour_End").text; min_End = "0x" + get_named_widget("Min_End").text; sec_End = "0x" + get_named_widget("Sec_End").text; cmd("#{target_name} OBC_DOWNLOAD_STORED_TELEMETRY with PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_YEAR #{year_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MONTH #{month_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_DAY_OF_MONTH #{day_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_HOURS #{hour_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MINUTES #{min_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_SECONDS #{sec_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_YEAR #{year_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MONTH #{month_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_DAY_OF_MONTH #{day_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_HOURS #{hour_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MINUTES #{min_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_SECONDS #{sec_End}")'
+							BUTTON "DOWN" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} OBC_ACK_PACKET OBC_ACK_STATUS = 99"); year_Start = "0x" + get_named_widget("Year_Start").text; month_Start = "0x" + get_named_widget("Month_Start").text; day_Start = "0x" + get_named_widget("DOM_Start").text; hour_Start = "0x" + get_named_widget("Hour_Start").text; min_Start = "0x" + get_named_widget("Min_Start").text; sec_Start = "0x" + get_named_widget("Sec_Start").text; year_End = "0x" + get_named_widget("Year_End").text; month_End = "0x" + get_named_widget("Month_End").text; day_End = "0x" + get_named_widget("DOM_End").text; hour_End = "0x" + get_named_widget("Hour_End").text; min_End = "0x" + get_named_widget("Min_End").text; sec_End = "0x" + get_named_widget("Sec_End").text; cmd("#{target_name} OBC_DOWNLOAD_STORED_TELEMETRY with PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_YEAR #{year_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MONTH #{month_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_DAY_OF_MONTH #{day_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_HOURS #{hour_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_MINUTES #{min_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_BEGIN_SECONDS #{sec_Start}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_YEAR #{year_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MONTH #{month_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_DAY_OF_MONTH #{day_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_HOURS #{hour_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_MINUTES #{min_End}, PARAMETER_OBC_DOWNLOAD_STORED_TELEMETRY_END_SECONDS #{sec_End}")'
 								SETTING RAW "min-width: 3em; min-height: 1.15em; max-width: 3em; max-height: 1.15em"
+                                              TIMEDLED TARGET OBC_ACK_PACKET OBC_ACK_STATUS
+                                                SETTING LED_COLOR ACKS_DOWNLOAD-STORED-TELEMETRY GREEN
+                                  		 SETTING LED_COLOR SEND_DOWNLOAD-STORED-TELEMETRY ORANGE
+                                                SETTING LED_COLOR NACK_DOWNLOAD-STORED-TELEMETRY RED
 							LABEL ""
+
 						END
 					END
 				END
@@ -248,4 +263,26 @@ SCROLLWINDOW
 	
 	END
 	
+END
+
+TABITEM "ACK NACK History"
+ SETTING RAW "min-width: 75em; min-height: 25em; max-width: 75em; max-height: 25em"
+                                  VERTICAL 0
+                                  VERTICALBOX "EPS TELECOMMAND NACKs" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the non received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+							SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                 DEMOTABLES TARGET OBC_ACK_PACKET OBC_ACK_STATUS
+END
+END
+END
 END

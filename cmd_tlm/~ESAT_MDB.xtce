@@ -417,18 +417,193 @@
 			 </xtce:IntegerDataEncoding>
 			</xtce:IntegerParameterType>
 			
-		        <xtce:EnumeratedParameterType name="1BIT_ACK_Data_Type">
+		        <xtce:EnumeratedParameterType name="1BIT_EPS_ACK_Data_Type">
 				<xtce:UnitSet/>
 				<xtce:IntegerDataEncoding bitOrder="mostSignificantBitFirst" encoding="unsigned" sizeInBits="8"/>
 				<xtce:EnumerationList>
-					<xtce:Enumeration value="31" label="DISABLE_TELEMETRY"/>
-					<xtce:Enumeration value="30" label="ENABLE_TELEMETRY"/>
-					<xtce:Enumeration value="34" label="FIXED_MODE"/>
-					<xtce:Enumeration value="32" label="MPPT_MODE"/>
-					<xtce:Enumeration value="00" label="SET_TIME"/>
-					<xtce:Enumeration value="33" label="SWEEP_MODE"/>
-					<xtce:Enumeration value="16" label="3V3_SWITCH"/>
-					<xtce:Enumeration value="17" label="5V_SWITCH"/>
+					<xtce:Enumeration value="49" label="ACKS_DISABLE-TELEMETRY"/>
+					<xtce:Enumeration value="48" label="ACKS_ENABLE-TELEMETRY"/>
+					<xtce:Enumeration value="34" label="ACKS_FIXED-MODE"/>
+					<xtce:Enumeration value="32" label="ACKS_MPPT-MODE"/>
+					<xtce:Enumeration value="00" label="ACKS_SET-TIME"/>
+					<xtce:Enumeration value="33" label="ACKS_SWEEP-MODE"/>
+					<xtce:Enumeration value="16" label="ACKS_3V3-SWITCH"/>
+					<xtce:Enumeration value="17" label="ACKS_5V-SWITCH"/>
+					<xtce:Enumeration value="99" label="SEND_MPPT-MODE"/>
+				        <xtce:Enumeration value="98" label="SEND_SWEEP-MODE"/>
+				        <xtce:Enumeration value="97" label="SEND_FIXED-MODE"/>
+				        <xtce:Enumeration value="96" label="SEND_3V3-SWITCH"/>
+				        <xtce:Enumeration value="95" label="SEND_5V-SWITCH"/>
+                                        <xtce:Enumeration value="94" label="SEND_SET-TIME"/>
+					<xtce:Enumeration value="89" label="NACK_MPPT-MODE"/>
+					<xtce:Enumeration value="88" label="NACK_SWEEP-MODE"/>
+					<xtce:Enumeration value="87" label="NACK_FIXED-MODE"/>
+					<xtce:Enumeration value="86" label="NACK_3V3-SWITCH"/>
+					<xtce:Enumeration value="85" label="NACK_5V-SWITCH"/>
+					<xtce:Enumeration value="84" label="NACK_SET-TIME"/>
+				</xtce:EnumerationList>
+			</xtce:EnumeratedParameterType>
+			
+                        <xtce:EnumeratedParameterType name="1BIT_WIFI_ACK_Data_Type">
+				<xtce:UnitSet/>
+				<xtce:IntegerDataEncoding bitOrder="mostSignificantBitFirst" encoding="unsigned" sizeInBits="8"/>
+				<xtce:EnumerationList>
+					<xtce:Enumeration value="00" label="ACKS_WIFI-CONNECT"/>
+					<xtce:Enumeration value="99" label="SEND_WIFI-CONNECT"/>
+					<xtce:Enumeration value="89" label="NACK_WIFI-CONNECT"/>
+				        <xtce:Enumeration value="01" label="ACKS_WIFI-DISCONNECT"/>
+					<xtce:Enumeration value="98" label="SEND_WIFI-DISCONNECT"/>
+					<xtce:Enumeration value="88" label="NACK_WIFI-DISCONNECT"/>
+					<xtce:Enumeration value="41" label="ACKS_DISABLE-TELEMETRY"/>
+					<xtce:Enumeration value="40" label="ACKS_ENABLE-TELEMETRY"/>
+					<xtce:Enumeration value="32" label="ACKS_READ-CONFIGURATION"/>
+					<xtce:Enumeration value="97" label="SEND_READ-CONFIGURATION"/>
+					<xtce:Enumeration value="87" label="NACK_READ-CONFIGURATION"/>
+					<xtce:Enumeration value="17" label="ACKS_SET-PASSPHRASE"/>
+					<xtce:Enumeration value="96" label="SEND_SET-PASSPHRASE"/>
+					<xtce:Enumeration value="86" label="NACK_SET-PASSPHRASE"/>
+					<xtce:Enumeration value="16" label="ACKS_SET-NETWORK-SSID"/>
+					<xtce:Enumeration value="95" label="SEND_SET-NETWORK-SSID"/>
+					<xtce:Enumeration value="85" label="NACK_SET-NETWORK-SSID"/>
+					<xtce:Enumeration value="18" label="ACKS_SET-SERVER-ADDRESS"/>
+					<xtce:Enumeration value="94" label="SEND_SET-SERVER-ADDRESS"/>
+					<xtce:Enumeration value="84" label="NACK_SET-SERVER-ADDRESS"/>
+					<xtce:Enumeration value="19" label="ACKS_SET-SERVER-PORT"/>
+					<xtce:Enumeration value="93" label="SEND_SET-SERVER-PORT"/>
+					<xtce:Enumeration value="83" label="NACK_SET-SERVER-PORT"/>
+					<xtce:Enumeration value="48" label="ACKS_SET-TIME"/>
+					<xtce:Enumeration value="92" label="SEND_SET-TIME"/>
+					<xtce:Enumeration value="82" label="NACK_SET-TIME"/>
+					<xtce:Enumeration value="33" label="ACKS_WRITE-CONFIGURATION"/>
+					<xtce:Enumeration value="91" label="SEND_WRITE-CONFIGURATION"/>
+					<xtce:Enumeration value="81" label="NACK_WRITE-CONFIGURATION"/>
+     				</xtce:EnumerationList>
+			</xtce:EnumeratedParameterType>
+			
+                        <xtce:EnumeratedParameterType name="1BIT_ADCS_ACK_Data_Type">
+				<xtce:UnitSet/>
+				<xtce:IntegerDataEncoding bitOrder="mostSignificantBitFirst" encoding="unsigned" sizeInBits="8"/>
+				<xtce:EnumerationList>
+					<xtce:Enumeration value="192" label="ACKS_SET-TIME"/>
+				        <xtce:Enumeration value="99" label="SEND_SET-TIME"/>
+					<xtce:Enumeration value="89" label="NACK_SET-TIME"/>
+					<xtce:Enumeration value="00" label="ACKS_FOLLOW-MAGNETIC-TARGET"/>
+					<xtce:Enumeration value="98" label="SEND_FOLLOW-MAGNETIC-TARGET"/>
+					<xtce:Enumeration value="88" label="NACK_FOLLOW-MAGNETIC-TARGET"/>
+				        <xtce:Enumeration value="01" label="ACKS_FOLLOW-SOLAR-TARGET"/>
+					<xtce:Enumeration value="97" label="SEND_FOLLOW-SOLAR-TARGET"/>
+					<xtce:Enumeration value="87" label="NACK_FOLLOW-SOLAR-TARGET"/>
+					<xtce:Enumeration value="02" label="ACKS_DETUMBLE"/>
+					<xtce:Enumeration value="96" label="SEND_DETUMBLE"/>
+					<xtce:Enumeration value="86" label="NACK_DETUMBLE"/>
+					<xtce:Enumeration value="16" label="ACKS_ATTITUDE-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="95" label="SEND_ATTITUDE-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="85" label="NACK_ATTITUDE-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="17" label="ACKS_ATTITUDE-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="94" label="SEND_ATTITUDE-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="84" label="NACK_ATTITUDE-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="18" label="ACKS_ATTITUDE-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="93" label="SEND_ATTITUDE-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="83" label="NACK_ATTITUDE-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="19" label="ACKS_ATTITUDE-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="92" label="SEND_ATTITUDE-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="82" label="NACK_ATTITUDE-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="20" label="ACKS_ATTITUDE-SET-GYROSCOPE-USAGE"/>
+					<xtce:Enumeration value="91" label="SEND_ATTITUDE-SET-GYROSCOPE-USAGE"/>
+					<xtce:Enumeration value="81" label="NACK_ATTITUDE-SET-GYROSCOPE-USAGE"/>
+					<xtce:Enumeration value="21" label="ACKS_ATTITUDE-SET-ACTUATORS"/>
+					<xtce:Enumeration value="90" label="SEND_ATTITUDE-SET-ACTUATORS"/>
+					<xtce:Enumeration value="80" label="NACK_ATTITUDE-SET-ACTUATORS"/>
+					<xtce:Enumeration value="22" label="ACKS_ATTITUDE-SET-DEADBAND"/>
+					<xtce:Enumeration value="69" label="SEND_ATTITUDE-SET-DEADBAND"/>
+					<xtce:Enumeration value="79" label="NACK_ATTITUDE-SET-DEADBAND"/>
+				        <xtce:Enumeration value="23" label="ACKS_ATTITUDE-SET-DETUMBLING-THRESHOLD"/>
+					<xtce:Enumeration value="68" label="SEND_ATTITUDE-SET-DETUMBLING-THRESHOLD"/>
+					<xtce:Enumeration value="78" label="NACK_ATTITUDE-SET-DETUMBLING-THRESHOLD"/>
+                                        <xtce:Enumeration value="208" label="ACKS_SET-COARSE-SUN-SENSOR-READINGS-SOURCES"/>
+					<xtce:Enumeration value="67" label="SEND_SET-COARSE-SUN-SENSOR-READINGS-SOURCES"/>
+					<xtce:Enumeration value="77" label="NACK_SET-COARSE-SUN-SENSOR-READINGS-SOURCES"/>
+					<xtce:Enumeration value="209" label="ACKS_CHANGE-MAGNETORQUER-AXES-AND-POLARITIES"/>
+					<xtce:Enumeration value="66" label="SEND_CHANGE-MAGNETORQUER-AXES-AND-POLARITIES"/>
+					<xtce:Enumeration value="76" label="NACK_CHANGE-MAGNETORQUER-AXES-AND-POLARITIES"/>
+					<xtce:Enumeration value="210" label="ACKS_CONFIGURE-GYROSCOPE-BIAS-CORRECTION"/>
+					<xtce:Enumeration value="65" label="SEND_CONFIGURE-GYROSCOPE-BIAS-CORRECTION"/>
+					<xtce:Enumeration value="75" label="NACK_CONFIGURE-GYROSCOPE-BIAS-CORRECTION"/>
+					<xtce:Enumeration value="211" label="ACKS_CONFIGURE-MAGNETOMETER-GEOMETRY-CORRECTION"/>
+					<xtce:Enumeration value="64" label="SEND_CONFIGURE-MAGNETOMETER-GEOMETRY-CORRECTION"/>
+					<xtce:Enumeration value="74" label="NACK_CONFIGURE-MAGNETOMETER-GEOMETRY-CORRECTION"/>
+					<xtce:Enumeration value="211" label="ACKS_RECONFIGURE-GYROSCOPE"/>
+					<xtce:Enumeration value="63" label="SEND_RECONFIGURE-GYROSCOPE"/>
+					<xtce:Enumeration value="73" label="NACK_RECONFIGURE-GYROSCOPE"/>
+					<xtce:Enumeration value="48" label="ACKS_MAGNETORQUER-ENABLE"/>
+					<xtce:Enumeration value="101" label="SEND_MAGNETORQUER-ENABLE"/>
+					<xtce:Enumeration value="121" label="NACK_MAGNETORQUER-ENABLE"/>
+					<xtce:Enumeration value="49" label="ACKS_MAGNETORQUER-SET-X-POLARITY"/>
+					<xtce:Enumeration value="102" label="SEND_MAGNETORQUER-SET-X-POLARITY"/>
+					<xtce:Enumeration value="122" label="NACK_MAGNETORQUER-SET-X-POLARITY"/>
+					<xtce:Enumeration value="50" label="ACKS_MAGNETORQUER-SET-Y-POLARITY"/>
+					<xtce:Enumeration value="103" label="SEND_MAGNETORQUER-SET-Y-POLARITY"/>
+					<xtce:Enumeration value="123" label="NACK_MAGNETORQUER-SET-Y-POLARITY"/>
+					<xtce:Enumeration value="51" label="ACKS_MAGNETORQUER-APPLY-MAXIMUM-TORQUE"/>
+					<xtce:Enumeration value="104" label="SEND_MAGNETORQUER-APPLY-MAXIMUM-TORQUE"/>
+					<xtce:Enumeration value="124" label="NACK_MAGNETORQUER-APPLY-MAXIMUM-TORQUE"/>
+					<xtce:Enumeration value="52" label="ACKS_MAGNETORQUER-DEMAGNETIZE"/>
+					<xtce:Enumeration value="105" label="SEND_MAGNETORQUER-DEMAGNETIZE"/>
+					<xtce:Enumeration value="125" label="NACK_MAGNETORQUER-DEMAGNETIZE"/>
+					<xtce:Enumeration value="255" label="ACKS_STOP-ACTUATORS"/>
+					<xtce:Enumeration value="106" label="SEND_STOP-ACTUATORS"/>
+					<xtce:Enumeration value="126" label="NACK_STOP-ACTUATORS"/>
+					<xtce:Enumeration value="32" label="ACKS_WHEEL-SET-DUTY-CYCLE"/>
+					<xtce:Enumeration value="107" label="SEND_WHEEL-SET-DUTY-CYCLE"/>
+					<xtce:Enumeration value="127" label="NACK_WHEEL-SET-DUTY-CYCLE"/>
+					<xtce:Enumeration value="33" label="ACKS_WHEEL-SET-SPEED"/>
+					<xtce:Enumeration value="108" label="SEND_WHEEL-SET-SPEED"/>
+					<xtce:Enumeration value="128" label="NACK_WHEEL-SET-SPEED"/>
+					<xtce:Enumeration value="34" label="ACKS_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="109" label="SEND_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="129" label="NACK_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN"/>
+					<xtce:Enumeration value="35" label="ACKS_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="110" label="SEND_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="130" label="NACK_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN"/>
+					<xtce:Enumeration value="36" label="ACKS_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="111" label="SEND_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="131" label="NACK_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN"/>
+					<xtce:Enumeration value="37" label="ACKS_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="112" label="SEND_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="132" label="NACK_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL"/>
+					<xtce:Enumeration value="38" label="ACKS_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER"/>
+					<xtce:Enumeration value="113" label="SEND_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER"/>
+					<xtce:Enumeration value="133" label="NACK_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER"/>
+     				</xtce:EnumerationList>
+			</xtce:EnumeratedParameterType>
+			
+                        <xtce:EnumeratedParameterType name="1BIT_OBC_ACK_Data_Type">
+				<xtce:UnitSet/>
+				<xtce:IntegerDataEncoding bitOrder="mostSignificantBitFirst" encoding="unsigned" sizeInBits="8"/>
+				<xtce:EnumerationList>
+					<xtce:Enumeration value="05" label="ACKS_DISABLE-TELEMETRY"/>
+					<xtce:Enumeration value="04" label="ACKS_ENABLE-TELEMETRY"/>
+					<xtce:Enumeration value="02" label="ACKS_DOWNLOAD-STORED-TELEMETRY"/>
+					<xtce:Enumeration value="99" label="SEND_DOWNLOAD-STORED-TELEMETRY"/>
+				        <xtce:Enumeration value="89" label="NACK_DOWNLOAD-STORED-TELEMETRY"/>
+				        <xtce:Enumeration value="03" label="ACKS_ERASE-STORED-TELEMETRY"/>
+					<xtce:Enumeration value="98" label="SEND_ERASE-STORED-TELEMETRY"/>
+				        <xtce:Enumeration value="88" label="NACK_ERASE-STORED-TELEMETRY"/>
+				        <xtce:Enumeration value="00" label="ACKS_SET-TIME"/>
+					<xtce:Enumeration value="97" label="SEND_SET-TIME"/>
+				        <xtce:Enumeration value="88" label="NACK_SET-TIME"/>
+				        <xtce:Enumeration value="01" label="ACKS_STORE-TELEMETRY"/>
+					<xtce:Enumeration value="96" label="SEND_STORE-TELEMETRY"/>
+				        <xtce:Enumeration value="86" label="NACK_STORE-TELEMETRY"/>
+				</xtce:EnumerationList>
+			</xtce:EnumeratedParameterType>
+			
+                        <xtce:EnumeratedParameterType name="1BIT_TPL_ACK_Data_Type">
+				<xtce:UnitSet/>
+				<xtce:IntegerDataEncoding bitOrder="mostSignificantBitFirst" encoding="unsigned" sizeInBits="8"/>
+				<xtce:EnumerationList>
+					<xtce:Enumeration value="10" label="ACKS_MODE"/>
+					<xtce:Enumeration value="11" label="ACKS_TARGET"/>
 				</xtce:EnumerationList>
 			</xtce:EnumeratedParameterType>
 			
@@ -472,6 +647,7 @@
 			<xtce:Parameter name="ADCS_MAGNETORQUER_YPOLARITY" parameterTypeRef="1BYTE_SIGN_SWITCH_Data_Type"/>
 			<xtce:Parameter name="ADCS_GYROSCOPE_ERROR" parameterTypeRef="1BYTE_ERROR_Data_Type"/>
 			<xtce:Parameter name="ADCS_MAGNETOMETER_ERROR" parameterTypeRef="1BYTE_ERROR_Data_Type"/>
+			<xtce:Parameter name="ADCS_ACK_STATUS" parameterTypeRef="1BIT_ADCS_ACK_Data_Type"/>
 			<xtce:Parameter name="CCSDS_VERSION" parameterTypeRef="CCSDS_VERSION_Data_Type"/>
 			<xtce:Parameter name="CCSDS_TYPE" parameterTypeRef="CCSDS_TYPE_Data_Type"/>
 			<xtce:Parameter name="CCSDS_SECONDARY_HEADER_FLAG" parameterTypeRef="CCSDS_SECONDARY_HEADER_FLAG_DATA_Type"/>
@@ -592,7 +768,7 @@
 			<xtce:Parameter name="EPS_BM_CELL_OVER_VOLTAGE_RECOVERY" parameterTypeRef="2BYTE_UNSIGNED_Data_Type"/>
 			<xtce:Parameter name="EPS_BM_CHEMICAL_ID" parameterTypeRef="2BYTE_UNSIGNED_Data_Type"/>
 			<xtce:Parameter name="EPS_BM_FIRMWARE_VERSION" parameterTypeRef="EPS_BM_FIRMWARE_Data_Type"/>
-			<xtce:Parameter name="EPS_ACK_STATUS" parameterTypeRef="1BIT_ACK_Data_Type"/>
+			<xtce:Parameter name="EPS_ACK_STATUS" parameterTypeRef="1BIT_EPS_ACK_Data_Type"/>
 			<xtce:Parameter name="OBC_STORE_TELEMETRY" parameterTypeRef="1BYTE_STATUS_Data_Type"/>
 			<xtce:Parameter name="OBC_TELEMETRY_STORAGE_ERROR" parameterTypeRef="1BYTE_STATUS_Data_Type"/>
 			<xtce:Parameter name="OBC_CLOCK_ERROR" parameterTypeRef="1BYTE_STATUS_Data_Type"/>
@@ -630,12 +806,14 @@
 			<xtce:Parameter name="OBC_PROCESSOR_VOLTAGE" parameterTypeRef="4BYTE_VOLTAGE_VOLTS_CALIBRATED_Data_Type"/>
 			<xtce:Parameter name="OBC_CURRENT_RAM_USAGE_PERCENTAGE" parameterTypeRef="4BYTE_PERCENTAGE_Data_Type"/>
 			<xtce:Parameter name="OBC_MAXIMUM_RAM_USAGE_PERCENTAGE" parameterTypeRef="4BYTE_PERCENTAGE_Data_Type"/>
+			<xtce:Parameter name="OBC_ACK_STATUS" parameterTypeRef="1BIT_OBC_ACK_Data_Type"/>
                         <xtce:Parameter name="TPL_RUN_MODE" parameterTypeRef="TPL_RUN_MODE_Data_Type"/>
 			<xtce:Parameter name="TPL_CURRENT_TEMPERATURE" parameterTypeRef="TPL_TEMPERATURE_Data_Type"/>
 			<xtce:Parameter name="TPL_HEATER_SWITCH_STATUS" parameterTypeRef="1BYTE_STATUS_Data_Type"/>
 			<xtce:Parameter name="TPL_TARGET_TEMPERATURE" parameterTypeRef="TPL_TEMPERATURE_Data_Type"/>
 			<xtce:Parameter name="TPL_LED_RED_INTENSITY" parameterTypeRef="TPL_LED_INTENSITY_Data_Type"/>
 			<xtce:Parameter name="TPL_LED_BLUE_INTENSITY" parameterTypeRef="TPL_LED_INTENSITY_Data_Type"/>
+			<xtce:Parameter name="TPL_ACK_STATUS" parameterTypeRef="1BIT_TPL_ACK_Data_Type"/>
 			<xtce:Parameter name="WIFI_CONNECTION_STATUS" parameterTypeRef="WIFI_CONNECTION_STATUS_Data_Type"/>
 			<xtce:Parameter name="WIFI_WLAN_ERROR" parameterTypeRef="WIFI_WLAN_ERROR_Data_Type"/>
 			<xtce:Parameter name="WIFI_WIRELESS_CHANNEL" parameterTypeRef="1BYTE_UNSIGNED_Data_Type"/>
@@ -674,6 +852,7 @@
 			<xtce:Parameter name="WIFI_SERVER_ADDRESS_4" parameterTypeRef="1BYTE_UNSIGNED_Data_Type"/>
 			<xtce:Parameter name="WIFI_SERVER_PORT" parameterTypeRef="2BYTE_UNSIGNED_Data_Type"/>
 			<xtce:Parameter name="WIFI_HOSTNAME" parameterTypeRef="32BYTE_CHARACTER_Data_Type"/>
+			<xtce:Parameter name="WIFI_ACK_STATUS" parameterTypeRef="1BIT_WIFI_ACK_Data_Type"/>
 		</xtce:ParameterSet>
 		<xtce:ContainerSet>
 				<xtce:SequenceContainer name="CCSDS_TM_Packet_Header" shortDescription="CCSDS TM Packet Primary and Secondary Header" abstract="true">
@@ -1162,6 +1341,24 @@
 						</xtce:RestrictionCriteria>
 					</xtce:BaseContainer>
 				</xtce:SequenceContainer>
+				
+                                <xtce:SequenceContainer name="ADCS_ACK_Packet" shortDescription="ESAT ADCS ACK telecommand acknowledgement system">
+					<xtce:EntryList>
+						<xtce:ParameterRefEntry parameterRef="ADCS_ACK_STATUS"/>
+					</xtce:EntryList>
+					<xtce:BaseContainer containerRef="CCSDS_TM_Packet_Header">
+						<xtce:RestrictionCriteria>
+							<xtce:ComparisonList>
+								<xtce:Comparison parameterRef="CCSDS_PACKET_ID" value="1"/>
+								<xtce:Comparison parameterRef="CCSDS_APID" value="2"/>
+								<xtce:Comparison parameterRef="CCSDS_TYPE" value="0"/>
+     			                                        <xtce:Comparison parameterRef="CCSDS_VERSION_NUMBER_MAJOR" value="3"/>
+							</xtce:ComparisonList>
+						</xtce:RestrictionCriteria>
+					</xtce:BaseContainer>
+				</xtce:SequenceContainer>
+				
+				
 				<xtce:SequenceContainer name="OBC_Packet" shortDescription="ESAT OBC subsystem complete CCSDS packet">
 					<xtce:EntryList>
 						<xtce:ParameterRefEntry parameterRef="OBC_PROCESSOR_LOAD"/>
@@ -1241,12 +1438,30 @@
 					</xtce:RestrictionCriteria>
 					</xtce:BaseContainer>
 				</xtce:SequenceContainer>
+				
+				<xtce:SequenceContainer name="OBC_ACK_Packet" shortDescription="ESAT OBC ACK telecommand acknowledgement system">
+					<xtce:EntryList>
+						<xtce:ParameterRefEntry parameterRef="OBC_ACK_STATUS"/>
+					</xtce:EntryList>
+					<xtce:BaseContainer containerRef="CCSDS_TM_Packet_Header">
+						<xtce:RestrictionCriteria>
+							<xtce:ComparisonList>
+								<xtce:Comparison parameterRef="CCSDS_PACKET_ID" value="3"/>
+								<xtce:Comparison parameterRef="CCSDS_APID" value="0"/>
+								<xtce:Comparison parameterRef="CCSDS_TYPE" value="0"/>
+     			                                        <xtce:Comparison parameterRef="CCSDS_VERSION_NUMBER_MAJOR" value="4"/>
+							</xtce:ComparisonList>
+						</xtce:RestrictionCriteria>
+					</xtce:BaseContainer>
+				</xtce:SequenceContainer>
+				
 				<xtce:SequenceContainer name="TPL_Packet" shortDescription="ESAT payload example subsystem packet">
 					<xtce:EntryList>
 						<xtce:ParameterRefEntry parameterRef="TPL_RUN_MODE"/>
 						<xtce:ParameterRefEntry parameterRef="TPL_CURRENT_TEMPERATURE"/>
 						<xtce:ParameterRefEntry parameterRef="TPL_HEATER_SWITCH_STATUS"/>
 						<xtce:ParameterRefEntry parameterRef="TPL_TARGET_TEMPERATURE"/>
+						<xtce:ParameterRefEntry parameterRef="TPL_ACK_STATUS"/>
 					</xtce:EntryList>
 					<xtce:BaseContainer containerRef="CCSDS_TM_Packet_Header">
 						<xtce:RestrictionCriteria>
@@ -1363,6 +1578,22 @@
 								<xtce:Comparison parameterRef="CCSDS_APID" value="3"/>
 								<xtce:Comparison parameterRef="CCSDS_TYPE" value="0"/>
 								<xtce:Comparison parameterRef="CCSDS_VERSION_NUMBER_MAJOR" value="2"/>
+							</xtce:ComparisonList>
+						</xtce:RestrictionCriteria>
+					</xtce:BaseContainer>
+				</xtce:SequenceContainer>
+				
+				<xtce:SequenceContainer name="WIFI_ACK_Packet" shortDescription="ESAT WIFI telecommand acknowledgement system">
+					<xtce:EntryList>
+						<xtce:ParameterRefEntry parameterRef="WIFI_ACK_STATUS"/>
+					</xtce:EntryList>
+					<xtce:BaseContainer containerRef="CCSDS_TM_Packet_Header">
+						<xtce:RestrictionCriteria>
+							<xtce:ComparisonList>
+								<xtce:Comparison parameterRef="CCSDS_PACKET_ID" value="5"/>
+								<xtce:Comparison parameterRef="CCSDS_APID" value="3"/>
+								<xtce:Comparison parameterRef="CCSDS_TYPE" value="0"/>
+     			                                        <xtce:Comparison parameterRef="CCSDS_VERSION_NUMBER_MAJOR" value="2"/>
 							</xtce:ComparisonList>
 						</xtce:RestrictionCriteria>
 					</xtce:BaseContainer>
@@ -3224,6 +3455,23 @@
 		</xtce:MetaCommandSet>
 	</xtce:CommandMetaData>
 </xtce:SpaceSystem>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

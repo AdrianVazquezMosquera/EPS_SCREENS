@@ -26,7 +26,7 @@ module Cosmos
 			@time = []
 			@data_array = []
 			@previous_time = 0
-			@rows = 0 #value.length
+			@rows = 0
 			@columns = 0
 			setRowCount(1)
 			setColumnCount(2)
@@ -54,13 +54,13 @@ module Cosmos
 			data = tlm_items[0]
 			t_sec = tlm_items[1]
 
-			if(@previous_time != t_sec && @previous_time != 0)
-				insertRow(1)
-			end
-
 			if (@previous_time != t_sec && @previous_time != 0)
 				@time << t_sec
 				@data_array << data
+			end
+
+			if(@previous_time != t_sec && @previous_time != 0)
+				insertRow(1)
 			end
 			
 			@rows = rowCount()
@@ -71,6 +71,8 @@ module Cosmos
 			setItem(row,1,Qt::TableWidgetItem.new(@time[position].to_s))
 			position = position - 1
 			end
+
+
 			
 
 			@previous_time = t_sec

@@ -1,5 +1,7 @@
 <%= render "_ADCS_Commands_header.txt" %>
 SCROLLWINDOW
+TABBOOK 
+TABITEM "ADCS TC-TLM"
 	SETTING RAW "min-width: 31em; min-height: 60em; max-width: 31em; max-height: 60em"
 	VERTICALBOX "SUBSYSTEM" 0
 		SETTING BORDERCOLOR 'MidnightBlue; border-width: 0.3em; font-weight: bold'
@@ -35,8 +37,12 @@ SCROLLWINDOW
 				LABEL ""
 			END
 			HORIZONTAL 0
-				BUTTON "STOP" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_STOP_ACTUATORS")'
+				BUTTON "STOP" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 106"); cmd("#{target_name} ADCS_STOP_ACTUATORS")'
 					SETTING RAW "font-weight: bold; color: red; border-radius: 0.5em; border: 0.05em solid MidnightBlue; background-color: CornflowerBlue; min-height: 1.25em; min-width: 4em; max-height: 1.25em; max-width: 4em"
+                                        TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_STOP-ACTUATORS GREEN
+                                        SETTING LED_COLOR SEND_STOP-ACTUATORS ORANGE
+                                        SETTING LED_COLOR NACK_STOP-ACTUATORS RED
 			END
 		END
 	END
@@ -80,8 +86,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_FOLLOW_MAGNETIC_TARGET with PARAMETER_ADCS_FOLLOW_MAGNETIC_TARGET #{get_named_widget("Magnetic_Attitude").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 98"); cmd("#{target_name} ADCS_FOLLOW_MAGNETIC_TARGET with PARAMETER_ADCS_FOLLOW_MAGNETIC_TARGET #{get_named_widget("Magnetic_Attitude").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                        TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_FOLLOW-MAGNETIC-TARGET GREEN
+                                        SETTING LED_COLOR SEND_FOLLOW-MAGNETIC-TARGET ORANGE
+                                        SETTING LED_COLOR NACK_FOLLOW-MAGNETIC-TARGET RED
 			END
 		
 			LABEL "Follow solar attitude: "
@@ -99,8 +109,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_FOLLOW_SOLAR_TARGET with PARAMETER_ADCS_FOLLOW_SOLAR_TARGET #{get_named_widget("Solar_Attitude").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 97"); cmd("#{target_name} ADCS_FOLLOW_SOLAR_TARGET with PARAMETER_ADCS_FOLLOW_SOLAR_TARGET #{get_named_widget("Solar_Attitude").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_FOLLOW-SOLAR-TARGET GREEN
+                                        SETTING LED_COLOR SEND_FOLLOW-SOLAR-TARGET ORANGE
+                                        SETTING LED_COLOR NACK_FOLLOW-SOLAR-TARGET RED
 			END
 		
 			LABEL "Detumble: "
@@ -113,8 +127,12 @@ SCROLLWINDOW
 					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_DETUMBLE")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 96"); cmd("#{target_name} ADCS_DETUMBLE")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_DETUMBLE GREEN
+                                        SETTING LED_COLOR SEND_DETUMBLE ORANGE
+                                        SETTING LED_COLOR NACK_DETUMBLE RED
 			END
 		
 			<%= render "_Separator_height.txt" %>
@@ -156,8 +174,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS #{get_named_widget("Actuator").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 90"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_ACTUATORS #{get_named_widget("Actuator").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-ACTUATORS GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-ACTUATORS ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-ACTUATORS RED
 			END
 		
 			LABEL "Use gyroscope: "
@@ -173,8 +195,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE #{get_named_widget("Enable_Gyro").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 91"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_GYROSCOPE_USAGE #{get_named_widget("Enable_Gyro").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-GYROSCOPE-USAGE GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-GYROSCOPE-USAGE ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-GYROSCOPE-USAGE RED
 			END
 		
 			LABEL "PID proportional gain: "
@@ -192,8 +218,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Attitude_Kp").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 95"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Attitude_Kp").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-PROPORTIONAL-GAIN GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-PROPORTIONAL-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-PROPORTIONAL-GAIN RED
 			END
 		
 			LABEL "PID integral gain: "
@@ -211,8 +241,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Attitude_Ki").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 94"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Attitude_Ki").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-INTEGRAL-GAIN GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-INTEGRAL-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-INTEGRAL-GAIN RED
 			END
 		
 			LABEL "PID derivative gain: "
@@ -230,8 +264,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Attitude_Kd").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 93"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Attitude_Kd").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-DERIVATIVE-GAIN GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-DERIVATIVE-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-DERIVATIVE-GAIN RED
 			END
 		
 			LABEL "Reset PID integral error: "
@@ -244,8 +282,12 @@ SCROLLWINDOW
 					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_RESET_ERROR_INTEGRAL")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 92"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_RESET_ERROR_INTEGRAL")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-RESET-ERROR-INTEGRAL GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-RESET-ERROR-INTEGRAL ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-RESET-ERROR-INTEGRAL RED
 			END
 		
 			LABEL "Set min. thresholds: "
@@ -285,8 +327,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGLE #{get_named_widget("Angle_Dead").text.to_i}, PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGULAR_VELOCITY #{get_named_widget("Velocity_Dead").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 69"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGLE #{get_named_widget("Angle_Dead").text.to_i}, PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DEADBAND_ANGULAR_VELOCITY #{get_named_widget("Velocity_Dead").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                      TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-DEADBAND GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-DEADBAND ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-DEADBAND RED
 			END
 		
 			LABEL "Set max. threshold: "
@@ -306,8 +352,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD #{get_named_widget("Velocity_Detumbling").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 68"); cmd("#{target_name} ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD with PARAMETER_ADCS_ATTITUDE_CONTROLLER_SET_DETUMBLING_THRESHOLD #{get_named_widget("Velocity_Detumbling").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_ATTITUDE-SET-DETUMBLING-THRESHOLD GREEN
+                                        SETTING LED_COLOR SEND_ATTITUDE-SET-DETUMBLING-THRESHOLD ORANGE
+                                        SETTING LED_COLOR NACK_ATTITUDE-SET-DETUMBLING-THRESHOLD RED
 			END
 		END
 	END
@@ -351,8 +401,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_SET_DUTY_CYCLE with PARAMETER_ADCS_WHEEL_SET_DUTY_CYCLE #{get_named_widget("Wheel_Duty").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 107"); cmd("#{target_name} ADCS_WHEEL_SET_DUTY_CYCLE with PARAMETER_ADCS_WHEEL_SET_DUTY_CYCLE #{get_named_widget("Wheel_Duty").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-SET-DUTY-CYCLE GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-SET-DUTY-CYCLE ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-SET-DUTY-CYCLE RED
 			END
 		
 			LABEL "Wheel speed: "
@@ -370,8 +424,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_SET_SPEED with PARAMETER_ADCS_WHEEL_SET_SPEED #{get_named_widget("Wheel_Speed").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 108"); cmd("#{target_name} ADCS_WHEEL_SET_SPEED with PARAMETER_ADCS_WHEEL_SET_SPEED #{get_named_widget("Wheel_Speed").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-SET-SPEED GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-SET-SPEED ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-SET-SPEED RED
 			END
 		
 			LABEL "Reset speed controller: "
@@ -384,8 +442,12 @@ SCROLLWINDOW
 					SETTING RAW "min-height: 1.5em; max-height: 1.5em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'send = message_box("WARNING\n\nThis command may have unintended side effects!\n\nFor ADCS 1.x.y board version users:\nThis command will switch the 5 V line on and off, thus affecting any other subsystem powered by this line. In addition, the wheel must be fully stopped before sending this command.\n\nFor ADCS 2.x.y board version users:\nIf the magnetorquers are powered on, this command will also toggle them off and on. This command can be issued while the wheel is spinning.\n\nAre you sure that you want to reset the speed controller?", "Yes", "No", false); if send == "Yes"; target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_RESET_ELECTRONIC_SPEED_CONTROLLER"); end'
+				BUTTON "Send" 'send = message_box("WARNING\n\nThis command may have unintended side effects!\n\nFor ADCS 1.x.y board version users:\nThis command will switch the 5 V line on and off, thus affecting any other subsystem powered by this line. In addition, the wheel must be fully stopped before sending this command.\n\nFor ADCS 2.x.y board version users:\nIf the magnetorquers are powered on, this command will also toggle them off and on. This command can be issued while the wheel is spinning.\n\nAre you sure that you want to reset the speed controller?", "Yes", "No", false); if send == "Yes"; target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 113"); cmd("#{target_name} ADCS_WHEEL_RESET_ELECTRONIC_SPEED_CONTROLLER"); end'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-RESET-ELECTRONIC-SPEED-CONTROLLER RED
 			END
 		
 			<%= render "_Separator_height.txt" %>
@@ -429,8 +491,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Wheel_Kp").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 109"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_PROPORTIONAL_GAIN #{get_named_widget("Wheel_Kp").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-CONTROLLER-SET-PROPORTIONAL-GAIN RED
 			END
 		
 			LABEL "PID integral gain: "
@@ -448,8 +514,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Wheel_Ki").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 110"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_INTEGRAL_GAIN #{get_named_widget("Wheel_Ki").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-CONTROLLER-SET-INTEGRAL-GAIN RED
 			END
 		
 			LABEL "PID derivative gain: "
@@ -467,8 +537,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Wheel_Kd").text.to_f}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 111"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN with PARAMETER_ADCS_WHEEL_CONTROLLER_SET_DERIVATIVE_GAIN #{get_named_widget("Wheel_Kd").text.to_f}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-CONTROLLER-SET-DERIVATIVE-GAIN RED
 			END
 		
 			LABEL "Reset PID integral error: "
@@ -480,8 +554,12 @@ SCROLLWINDOW
 				LABEL ""
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_RESET_ERROR_INTEGRAL")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 112"); cmd("#{target_name} ADCS_WHEEL_CONTROLLER_RESET_ERROR_INTEGRAL")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL GREEN
+                                        SETTING LED_COLOR SEND_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL ORANGE
+                                        SETTING LED_COLOR NACK_WHEEL-CONTROLLER-RESET-ERROR-INTEGRAL RED
 			END
 		END
 	END
@@ -523,8 +601,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_ENABLE with PARAMETER_ADCS_MAGNETORQUER_ENABLE #{get_named_widget("Enable_MTQ").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 101"); cmd("#{target_name} ADCS_MAGNETORQUER_ENABLE with PARAMETER_ADCS_MAGNETORQUER_ENABLE #{get_named_widget("Enable_MTQ").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_MAGNETORQUER-ENABLE GREEN
+                                        SETTING LED_COLOR SEND_MAGNETORQUER-ENABLE ORANGE
+                                        SETTING LED_COLOR NACK_MAGNETORQUER-ENABLE RED
 			END
 		
 			LABEL "X-MTQ polarity: "
@@ -540,8 +622,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_X_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_X_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_X").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET"); set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 102"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_X_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_X_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_X").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_MAGNETORQUER-SET-X-POLARITY GREEN
+                                        SETTING LED_COLOR SEND_MAGNETORQUER-SET-X-POLARITY ORANGE
+                                        SETTING LED_COLOR NACK_MAGNETORQUER-SET-X-POLARITY RED
 			END
 		
 			LABEL "Y-MTQ polarity: "
@@ -557,8 +643,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_Y_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_Y_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_Y").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 103"); cmd("#{target_name} ADCS_MAGNETORQUER_SET_Y_POLARITY with PARAMETER_ADCS_MAGNETORQUER_SET_Y_POLARITY #{get_named_widget("Polarity_MAGNETORQUER_Y").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_MAGNETORQUER-SET-Y-POLARITY GREEN
+                                        SETTING LED_COLOR SEND_MAGNETORQUER-SET-Y-POLARITY ORANGE
+                                        SETTING LED_COLOR NACK_MAGNETORQUER-SET-Y-POLARITY RED
 			END
 		
 			LABEL "Max. torque: "
@@ -574,8 +664,12 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE with PARAMETER_ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE #{get_named_widget("MTQ_Direction").text}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 104"); cmd("#{target_name} ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE with PARAMETER_ADCS_MAGNETORQUER_APPLY_MAXIMUM_TORQUE #{get_named_widget("MTQ_Direction").text}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_MAGNETORQUER-APPLY-MAXIMUM-TORQUE GREEN
+                                        SETTING LED_COLOR SEND_MAGNETORQUER-APPLY-MAXIMUM-TORQUE ORANGE
+                                        SETTING LED_COLOR NACK_MAGNETORQUER-APPLY-MAXIMUM-TORQUE RED
 			END
 		
 			LABEL "Iterations for demagnetization: "
@@ -593,10 +687,36 @@ SCROLLWINDOW
 					SETTING RAW "min-width: 0.25em; max-width: 0.25em"
 			END
 			HORIZONTAL 0
-				BUTTON "Send" 'target_name = get_target_name("TARGET"); cmd("#{target_name} ADCS_MAGNETORQUER_DEMAGNETIZE with PARAMETER_ADCS_MAGNETORQUER_DEMAGNETIZE_CYCLES #{get_named_widget("MTQ_Iterations").text.to_i}")'
+				BUTTON "Send" 'target_name = get_target_name("TARGET");set_tlm("#{target_name} ADCS_ACK_PACKET ADCS_ACK_STATUS = 105"); cmd("#{target_name} ADCS_MAGNETORQUER_DEMAGNETIZE with PARAMETER_ADCS_MAGNETORQUER_DEMAGNETIZE_CYCLES #{get_named_widget("MTQ_Iterations").text.to_i}")'
 					SETTING RAW "min-width: 2.5em; min-height: 1.15em; max-width: 2.5em; max-height: 1.15em"
+                                     TIMEDLED TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+                                        SETTING LED_COLOR ACKS_MAGNETORQUER-DEMAGNETIZE GREEN
+                                        SETTING LED_COLOR SEND_MAGNETORQUER-DEMAGNETIZE ORANGE
+                                        SETTING LED_COLOR NACK_MAGNETORQUER-DEMAGNETIZE RED
 			END
 		END
 	END
+END
+
+TABITEM "ACK NACK History"
+ SETTING RAW "min-width: 31em; min-height: 60em; max-width: 31em; max-height: 60em"
+                                  VERTICAL 0
+                                  VERTICALBOX "EPS TELECOMMAND NACKs" 0
+					SETTING BORDERCOLOR 'LightSeaGreen; border-width: 0.3em; font-weight: bold; min-height: 40em'
+					<%= render "_Separator_height.txt" %>
+  					LABEL "Code and timestamp of the non received telecommands"
+					SETTING RAW "font-weight: bold"
+
+						HORIZONTALLINE
+							SETTING RAW "background-color: WhiteSmoke; min-height: 0.025em; max-height: 0.025em"
+						
+          					VERTICALBOX "" 0
+							SETTING BORDERCOLOR 'White; border-width: 0.3em; border-style: hidden'
+						
+		
+                                 DEMOTABLES TARGET ADCS_ACK_PACKET ADCS_ACK_STATUS
+END
+END
+END
 END
 
